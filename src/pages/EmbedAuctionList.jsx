@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { MaterialSymbol } from 'react-material-symbols';
 import { apiFetch, storageUrl } from '../utils/api';
 import { useI18n } from '../i18n';
+import { appPath } from '../utils/appPath';
 
 export default function EmbedAuctionList() {
   const [searchParams] = useSearchParams();
@@ -77,7 +78,7 @@ export default function EmbedAuctionList() {
               return (
                 <a
                   key={auction.id}
-                  href={`/react.oasis/auctions/${auction.id}`}
+                  href={appPath(`/auctions/${auction.id}`)}
                   target="_top"
                   className="bg-white rounded-2xl border border-[#eeeee9] overflow-hidden hover:shadow-lg hover:border-brand-accent/40 transition-all group block"
                 >
@@ -126,7 +127,7 @@ export default function EmbedAuctionList() {
 
         <div className="text-center mt-6 text-[10px] text-on-surface-subtle">
           {t('embedCodesSection.poweredBy') || 'Powered by'}{' '}
-          <a href="/react.oasis/" target="_top" className="text-brand-primary font-semibold hover:underline">
+          <a href={appPath('/')} target="_top" className="text-brand-primary font-semibold hover:underline">
             Oasis Trace
           </a>
         </div>

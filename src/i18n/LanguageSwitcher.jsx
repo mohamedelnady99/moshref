@@ -2,7 +2,7 @@ import React from 'react';
 import { useI18n } from './index';
 import { setStoredLocale } from '../utils/api';
 
-export default function LanguageSwitcher({ compact }) {
+export default function LanguageSwitcher({ compact, className = '' }) {
   const { locale, setLocale, languages, t } = useI18n();
 
   const handleChange = (e) => {
@@ -29,7 +29,7 @@ export default function LanguageSwitcher({ compact }) {
       <select
         value={locale}
         onChange={handleChange}
-        className="px-3 py-2 rounded-xl bg-surface-light hover:bg-surface-high transition-all text-sm text-brand-primary font-semibold border-none cursor-pointer appearance-none"
+        className={`px-3 py-2 rounded-xl bg-surface-light hover:bg-surface-high transition-all text-sm text-brand-primary font-semibold border-none cursor-pointer appearance-none ${className}`}
       >
         {languages.map(lang => (
           <option key={lang.code} value={lang.code} dir={lang.direction || 'ltr'}>
@@ -45,7 +45,7 @@ export default function LanguageSwitcher({ compact }) {
       <select
         value={locale}
         onChange={handleChange}
-        className="px-3 pe-14 py-2 rounded-xl bg-surface-light hover:bg-surface-high transition-all text-sm text-brand-primary font-semibold border-none cursor-pointer appearance-none"
+        className={`px-3 pe-14 py-2 rounded-xl bg-surface-light hover:bg-surface-high transition-all text-sm text-brand-primary font-semibold border-none cursor-pointer appearance-none ${className}`}
       >
         {languages.map(lang => (
           <option key={lang.code} value={lang.code} dir={lang.direction || 'ltr'}>

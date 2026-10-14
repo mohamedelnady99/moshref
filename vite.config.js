@@ -9,7 +9,9 @@ export default defineConfig(({ mode }) => {
   const apiBasePath = apiUrl.pathname;    // /api.animals/public
 
   return {
-    base: '/react.oasis/',
+    // Deploy at the domain root by default. Set VITE_BASE_PATH=/folder/ only
+    // when the whole app is served from a subdirectory.
+    base: env.VITE_BASE_PATH || '/',
     plugins: [react()],
     root: '.',
     build: {

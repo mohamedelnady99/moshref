@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { MaterialSymbol } from 'react-material-symbols';
 import { useI18n } from '../../i18n';
 import { usePlatform } from '../../context/PlatformContext';
+import { appPath } from '../../utils/appPath';
 
 const LANGUAGES = [
   { code: 'en', label: 'English', dir: 'ltr' },
@@ -82,7 +83,7 @@ export default function EmbedCodesSettings({ dir }) {
     const width = widths[widget.id] || widget.defaultWidth;
     const lang = (langs[widget.id] ?? currentLocale) || 'en';
     const separator = widget.path.includes('?') ? '&' : '?';
-    const url = `${baseUrl}/react.oasis${widget.path}${separator}lang=${lang}`;
+    const url = `${baseUrl}${appPath(widget.path)}${separator}lang=${lang}`;
     return `<iframe src="${url}"\n        width="${width}" height="${height}"\n        frameborder="0"\n        style="border-radius:12px;background:#FAF5F1;max-width:100%"\n        allow="payment"></iframe>`;
   };
 
@@ -161,7 +162,7 @@ export default function EmbedCodesSettings({ dir }) {
                     </div>
                     <div className="self-end">
                       <a
-                        href={`/react.oasis${widget.path}`}
+                        href={appPath(widget.path)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-light rounded-lg text-xs font-medium text-on-surface-variant hover:bg-surface-high transition"

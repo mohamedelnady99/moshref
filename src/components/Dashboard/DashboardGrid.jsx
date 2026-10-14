@@ -150,14 +150,24 @@ export default function DashboardGrid({ dashboardData }) {
   const activeIds = widgets.map(w => w.id);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <h2 className="text-2xl font-black text-brand-primary">{t('dashboard.title')}</h2>
-        <div className="flex items-center gap-2">
+    <div className="space-y-7">
+      <div className="relative overflow-visible rounded-[2rem] border border-brand-primary/5 bg-gradient-to-br from-white via-white to-surface-light px-6 py-6 shadow-[0_12px_32px_rgba(6,64,43,0.06)] sm:px-8 sm:py-7">
+        <div className="pointer-events-none absolute -end-8 -top-12 h-40 w-40 rounded-full bg-brand-accent/10 blur-2xl" />
+        <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary text-brand-accent shadow-lg shadow-brand-primary/20">
+              <MaterialSymbol icon="space_dashboard" size={27} weight="fill" />
+            </div>
+            <div>
+              <p className="mb-1 text-sm font-semibold text-on-surface-subtle">{user?.name ? `${t('common.welcome') !== 'common.welcome' ? t('common.welcome') : 'Welcome back'}, ${user.name}` : t('dashboard.title')}</p>
+              <h2 className="text-2xl font-black tracking-tight text-brand-primary sm:text-3xl">{t('dashboard.title')}</h2>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
           <div className="relative" ref={customizeRef}>
             <button
               onClick={() => setShowCustomize(v => !v)}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-on-surface-subtle hover:text-brand-primary hover:bg-surface-light transition-all"
+              className="flex items-center gap-2 rounded-xl border border-brand-primary/10 bg-white px-3.5 py-2.5 text-sm font-semibold text-on-surface-variant shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand-primary/20 hover:text-brand-primary"
               title="Customize"
             >
               <MaterialSymbol icon="tune" size={16} />
@@ -165,7 +175,7 @@ export default function DashboardGrid({ dashboardData }) {
             </button>
 
             {showCustomize && (
-              <div className="absolute right-0 top-full mt-2 z-50 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 min-w-[220px]">
+              <div className="absolute right-0 top-full z-50 mt-3 min-w-[220px] rounded-2xl border border-brand-primary/10 bg-white p-4 shadow-2xl">
                 <h4 className="text-sm font-bold text-brand-primary mb-3">Show Widgets</h4>
                 <div className="space-y-2">
                   {availableWidgets.map(aw => {
@@ -201,13 +211,14 @@ export default function DashboardGrid({ dashboardData }) {
 
           <button
             onClick={handleReset}
-            className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-on-surface-subtle hover:text-brand-primary hover:bg-surface-light transition-all"
+            className="flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-on-surface-subtle transition-all hover:bg-surface-light hover:text-brand-primary"
             title={t('dashboard.resetLayout')}
           >
             <MaterialSymbol icon="refresh" size={16} />
             {t('dashboard.resetLayout')}
           </button>
         </div>
+      </div>
       </div>
 
       <DndContext
@@ -216,7 +227,7 @@ export default function DashboardGrid({ dashboardData }) {
         onDragEnd={handleDragEnd}
       >
         <SortableContext items={widgets.map((w) => w.id)} strategy={rectSortingStrategy}>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
             {widgets.map((widget) => {
               const Component = widgetComponents[widget.id];
               if (!Component) return null;

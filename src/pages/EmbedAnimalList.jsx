@@ -5,6 +5,7 @@ import { MaterialSymbol } from 'react-material-symbols';
 import { apiFetch, storageUrl } from '../utils/api';
 import { getSpeciesMaterialIcon } from '../utils/speciesIcons';
 import { useI18n } from '../i18n';
+import { appPath } from '../utils/appPath';
 
 export default function EmbedAnimalList() {
   const [searchParams] = useSearchParams();
@@ -83,7 +84,7 @@ export default function EmbedAnimalList() {
               return (
                 <a
                   key={animal.id}
-                  href={`/react.oasis/animals/${animal.id}`}
+                  href={appPath(`/animals/${animal.id}`)}
                   target="_top"
                   className="bg-white rounded-xl border border-[#eeeee9] overflow-hidden hover:shadow-lg hover:border-brand-accent/40 transition-all group block"
                 >
@@ -133,7 +134,7 @@ export default function EmbedAnimalList() {
 
         <div className="text-center mt-6 text-[10px] text-on-surface-subtle">
           {t('embedCodesSection.poweredBy') || 'Powered by'}{' '}
-          <a href="/react.oasis/" target="_top" className="text-brand-primary font-semibold hover:underline">
+          <a href={appPath('/')} target="_top" className="text-brand-primary font-semibold hover:underline">
             Oasis Trace
           </a>
         </div>

@@ -75,7 +75,7 @@ export const apiFetch = async (url, options = {}) => {
   return fetch(fullUrl, fetchOptions).then(res => {
     if (res.status === 401 && !url.includes('/auth/login')) {
       clearAuth();
-      window.location.href = '/react.oasis/login';
+      window.location.href = `${import.meta.env.BASE_URL}login`;
     }
     return res;
   });

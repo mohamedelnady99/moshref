@@ -34,23 +34,23 @@ export default function StatsCardsWidget({ dashboardData }) {
   const highTempCount = temps.filter(t => t > 39.5).length;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-      <div className="stat-card group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-        <div className="flex justify-between items-start mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-lg shadow-brand-primary/20">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <div className="group rounded-2xl border border-brand-primary/5 bg-gradient-to-br from-white to-surface-light/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.1)]">
+        <div className="mb-7 flex items-start justify-between">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary shadow-lg shadow-brand-primary/20">
             <MaterialSymbol icon="pets" size={24} className="text-brand-accent" weight="fill" />
           </div>
           <span className="chip chip-success">{stats.totalAnimals > 0 ? ((stats.activeDevices / stats.totalAnimals) * 100).toFixed(1) + '%' : '0%'}</span>
         </div>
         <div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">{t('dashboard.totalAnimals')}</p>
-          <h3 className="text-4xl font-black text-brand-primary">{stats.totalAnimals}</h3>
+          <h3 className="text-4xl font-black tracking-tight text-brand-primary">{stats.totalAnimals}</h3>
         </div>
       </div>
 
-      <div className="stat-card group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-        <div className="flex justify-between items-start mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-lg shadow-brand-primary/20">
+      <div className="group rounded-2xl border border-brand-primary/5 bg-gradient-to-br from-white to-surface-light/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.1)]">
+        <div className="mb-7 flex items-start justify-between">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary shadow-lg shadow-brand-primary/20">
             <MaterialSymbol icon="sensors" size={24} className="text-brand-accent" weight="fill" />
           </div>
           <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export default function StatsCardsWidget({ dashboardData }) {
         </div>
         <div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">{t('dashboard.activeDevices')}</p>
-          <h3 className="text-4xl font-black text-brand-primary">{stats.activeDevices}</h3>
+          <h3 className="text-4xl font-black tracking-tight text-brand-primary">{stats.activeDevices}</h3>
           {stats.realDataEnabled && (
             <div className="flex items-center gap-3 mt-1 text-xs">
               <span className="text-[#10B981] font-semibold">LIVE {stats.healthyCountReal || 0}</span>
@@ -71,22 +71,22 @@ export default function StatsCardsWidget({ dashboardData }) {
         </div>
       </div>
 
-      <div className="stat-card group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-        <div className="flex justify-between items-start mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#BA1A1A]/90 to-[#BA1A1A]/70 flex items-center justify-center shadow-lg shadow-[#BA1A1A]/20">
+      <div className="group rounded-2xl border border-danger/10 bg-gradient-to-br from-white to-[#fff8f8] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(186,26,26,0.1)]">
+        <div className="mb-7 flex items-start justify-between">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#BA1A1A]/90 to-[#BA1A1A]/70 shadow-lg shadow-[#BA1A1A]/20">
             <MaterialSymbol icon="warning" size={24} className="text-white" weight="fill" />
           </div>
           <span className={`chip ${sev.cls}`}>{sev.label}</span>
         </div>
         <div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">{t('dashboard.alerts')}</p>
-          <h3 className="text-4xl font-black text-danger">{stats.alerts}</h3>
+          <h3 className="text-4xl font-black tracking-tight text-danger">{stats.alerts}</h3>
         </div>
       </div>
 
-      <div className="stat-card bg-gradient-to-br from-brand-secondary to-brand-primary text-white group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-        <div className="flex justify-between items-start mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center backdrop-blur-sm">
+      <div className="group rounded-2xl bg-gradient-to-br from-brand-secondary to-brand-primary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+        <div className="mb-7 flex items-start justify-between">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
             <MaterialSymbol icon="device_thermostat" size={24} className="text-brand-accent" weight="fill" />
           </div>
           {highTempCount > 0 ? (
@@ -105,9 +105,9 @@ export default function StatsCardsWidget({ dashboardData }) {
       </div>
 
       {userRole !== 'Doctor' && userRole !== 'Shepherd' && (isAdmin && stats.subscription?.is_admin ? (
-        <Link to="/users" className="stat-card bg-gradient-to-br from-brand-primary to-brand-secondary text-white group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-          <div className="flex justify-between items-start mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center backdrop-blur-sm">
+        <Link to="/users" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+          <div className="mb-7 flex items-start justify-between">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="admin_panel_settings" size={24} className="text-brand-accent" weight="fill" />
             </div>
           </div>
@@ -120,9 +120,9 @@ export default function StatsCardsWidget({ dashboardData }) {
           </div>
         </Link>
       ) : isAdminOrOwner && stats.subscription ? (
-        <Link to="/subscription" className="stat-card bg-gradient-to-br from-brand-primary to-brand-secondary text-white group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-          <div className="flex justify-between items-start mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center backdrop-blur-sm">
+        <Link to="/subscription" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+          <div className="mb-7 flex items-start justify-between">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="stars" size={24} className="text-brand-accent" weight="fill" />
             </div>
           </div>
@@ -139,9 +139,9 @@ export default function StatsCardsWidget({ dashboardData }) {
           </div>
         </Link>
       ) : isAdminOrOwner && !stats.subscription ? (
-        <Link to="/subscription" className="stat-card bg-gradient-to-br from-brand-primary to-brand-secondary text-white group hover:shadow-[0_16px_48px_rgba(6,64,43,0.1)] transition-shadow duration-300">
-          <div className="flex justify-between items-start mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center backdrop-blur-sm">
+        <Link to="/subscription" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+          <div className="mb-7 flex items-start justify-between">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="stars" size={24} className="text-brand-accent" weight="fill" />
             </div>
           </div>
@@ -151,9 +151,9 @@ export default function StatsCardsWidget({ dashboardData }) {
           </div>
         </Link>
       ) : (
-        <div className="stat-card bg-gradient-to-br from-brand-primary to-brand-secondary text-white/80 group">
-          <div className="flex justify-between items-start mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center backdrop-blur-sm">
+        <div className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white/80 shadow-lg shadow-brand-primary/10">
+          <div className="mb-7 flex items-start justify-between">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="stars" size={24} className="text-brand-accent/60" weight="fill" />
             </div>
           </div>

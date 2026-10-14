@@ -5,6 +5,7 @@ import { MaterialSymbol } from 'react-material-symbols';
 import { apiFetch, storageUrl } from '../utils/api';
 import { getSpeciesMaterialIcon } from '../utils/speciesIcons';
 import { useI18n } from '../i18n';
+import { appPath } from '../utils/appPath';
 
 export default function EmbedAnimalCarousel() {
   const [searchParams] = useSearchParams();
@@ -91,7 +92,7 @@ export default function EmbedAnimalCarousel() {
           {t('nav.animals') || 'Animals'}
         </p>
         <a
-          href="/react.oasis/animals"
+          href={appPath('/animals')}
           target="_top"
           className="text-[10px] font-medium text-brand-accent hover:underline"
         >
@@ -126,7 +127,7 @@ export default function EmbedAnimalCarousel() {
             return (
               <a
                 key={animal.id}
-                href={`/react.oasis/animals/${animal.id}`}
+                href={appPath(`/animals/${animal.id}`)}
                 target="_top"
                 className="flex-none w-44 bg-white rounded-xl border border-[#eeeee9] overflow-hidden hover:shadow-md hover:border-brand-accent/30 transition-all group/card"
               >
@@ -164,7 +165,7 @@ export default function EmbedAnimalCarousel() {
 
       <div className="text-center mt-3 text-[9px] text-on-surface-subtle">
         {t('embedCodesSection.poweredBy') || 'Powered by'}{' '}
-        <a href="/react.oasis/" target="_top" className="text-brand-primary font-semibold hover:underline">
+        <a href={appPath('/')} target="_top" className="text-brand-primary font-semibold hover:underline">
           Oasis Trace
         </a>
       </div>

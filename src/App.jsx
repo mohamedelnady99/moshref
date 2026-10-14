@@ -53,6 +53,7 @@ function SuspenseFallback() {
 }
 
 const Login = lazy(() => import('./pages/Login'));
+const LandingPage = lazy(() => import('./pages/LandingPage'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const AcceptInvitation = lazy(() => import('./pages/AcceptInvitation'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -103,6 +104,10 @@ const PrivacyPage = lazy(() => import('./pages/static/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/static/TermsPage'));
 const router = createBrowserRouter([
   {
+    path: '/',
+    element: <Suspense fallback={<SuspenseFallback />}><LandingPage /></Suspense>,
+  },
+  {
     path: '/login',
     element: <Suspense fallback={<SuspenseFallback />}><Login /></Suspense>,
   },
@@ -144,7 +149,6 @@ const router = createBrowserRouter([
       {
         element: <Layout />,
         children: [
-          { index: true, element: <Navigate to="/dashboard" replace /> },
           { path: 'dashboard', element: <Suspense fallback={<SuspenseFallback />}><Dashboard /></Suspense> },
           { path: 'animals', element: <Suspense fallback={<SuspenseFallback />}><AnimalList /></Suspense> },
           { path: 'animals/new', element: <Suspense fallback={<SuspenseFallback />}><AnimalEdit /></Suspense> },
@@ -201,7 +205,7 @@ const router = createBrowserRouter([
 
   },
 ], {
-  basename: '/react.oasis/',
+  basename: import.meta.env.BASE_URL,
   future: {
 
     v7_startTransition: true,

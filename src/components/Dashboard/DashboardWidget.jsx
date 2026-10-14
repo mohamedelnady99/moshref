@@ -24,20 +24,20 @@ export default function DashboardWidget({ id, title, children, dragHandleProps }
     <div
       ref={setNodeRef}
       style={style}
-      className="card group relative"
+      className="card group relative border border-brand-primary/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(6,64,43,0.1)]"
     >
       <div
         {...attributes}
         {...listeners}
-        className="flex items-center gap-3 p-5 pb-0 cursor-grab active:cursor-grabbing select-none"
+        className="flex cursor-grab select-none items-center gap-3 border-b border-brand-primary/5 bg-gradient-to-r from-white to-surface-light/70 px-5 py-4 active:cursor-grabbing"
       >
-        <div className="flex items-center gap-2 text-on-surface-subtle opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-2 text-on-surface-subtle opacity-0 transition-opacity group-hover:opacity-100">
           <MaterialSymbol icon="drag_indicator" size={18} />
         </div>
-        <h4 className="font-black text-lg text-brand-primary flex-1">{title}</h4>
+        <h4 className="flex-1 text-base font-black tracking-tight text-brand-primary sm:text-lg">{title}</h4>
         {dragHandleProps}
       </div>
-      <div className="p-5">
+      <div className="p-5 sm:p-6">
         {children}
       </div>
     </div>
