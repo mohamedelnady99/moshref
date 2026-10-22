@@ -151,7 +151,7 @@ export default function DashboardGrid({ dashboardData }) {
 
   return (
     <div className="space-y-7">
-      <div className="relative overflow-visible rounded-[2rem] border border-brand-primary/5 bg-gradient-to-br from-white via-white to-surface-light px-6 py-6 shadow-[0_12px_32px_rgba(6,64,43,0.06)] sm:px-8 sm:py-7">
+      <div className="relative overflow-visible rounded-[2rem] border border-brand-primary/5 bg-gradient-to-br from-white via-white to-surface-light px-6 py-6 shadow-[0_12px_32px_rgb(var(--color-secondary-rgb)/0.06)] sm:px-8 sm:py-7">
         <div className="pointer-events-none absolute end-0 -top-12 h-40 w-40 rounded-full bg-brand-accent/10 blur-2xl" />
         <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
@@ -189,7 +189,7 @@ export default function DashboardGrid({ dashboardData }) {
                           type="checkbox"
                           checked={isActive}
                           onChange={(e) => handleToggleWidget(aw.id, e.target.checked)}
-                          className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                          className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                         />
                         <span className="text-sm font-medium text-on-surface-variant">{aw.title}</span>
                       </label>

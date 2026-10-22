@@ -11,6 +11,7 @@ import { storageUrl, apiFetch } from '../../utils/api';
 import Footer from './Footer';
 import LanguageSwitcher from '../../i18n/LanguageSwitcher';
 
+import { brandMark } from '../../assets/brand';
 const mainNavItems = [
   { path: '/dashboard', icon: 'dashboard', labelKey: 'nav.dashboard', roles: ['Admin', 'Owner', 'Manager', 'Shepherd', 'Doctor'] },
   { path: '/animals', icon: 'pets', labelKey: 'nav.animals', hasSubmenu: true, roles: ['Admin', 'Owner', 'Manager', 'Shepherd', 'Doctor'] },
@@ -189,13 +190,7 @@ export default function Layout() {
 
   const renderBrand = (collapsed) => (
     <div className={`flex items-center gap-3 min-w-0 ${collapsed ? 'justify-center' : ''}`}>
-      {logoUrl ? (
-        <img src={storageUrl(logoUrl)} alt={platformName} className={`${collapsed ? 'w-11 h-11' : 'w-12 h-12'} object-contain rounded-2xl flex-shrink-0 transition-all`} />
-      ) : (
-        <div className={`${collapsed ? 'w-11 h-11' : 'w-12 h-12'} bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center shadow-lg shadow-brand-primary/20 flex-shrink-0 transition-all`}>
-          <MaterialSymbol icon="eco" size={26} className="text-brand-accent" fill />
-        </div>
-      )}
+      <img src={logoUrl ? storageUrl(logoUrl) : brandMark} alt={platformName} className={`${collapsed ? 'w-11 h-11' : 'w-12 h-12'} object-contain rounded-2xl flex-shrink-0 transition-all`} />
       {!collapsed && (
         <div className="min-w-0">
           <h1 className="text-lg font-extrabold text-brand-primary leading-tight truncate">{platformName}</h1>
@@ -309,7 +304,7 @@ export default function Layout() {
     <div className="min-h-screen bg-brand-light">
       {/* Desktop sidebar */}
       <aside
-        className={`hidden md:flex flex-col h-screen fixed top-0 start-0 bg-gradient-to-b from-[#FAF1F5] to-[#F4F4EF] border-e border-brand-primary/5 py-5 z-50 transition-[width] duration-300 ${sidebarCollapsed ? 'w-20 px-3' : 'w-72 px-4'}`}
+        className={`hidden md:flex flex-col h-screen fixed top-0 start-0 bg-gradient-to-b from-brand-light to-[#F4F4EF] border-e border-brand-primary/5 py-5 z-50 transition-[width] duration-300 ${sidebarCollapsed ? 'w-20 px-3' : 'w-72 px-4'}`}
       >
         <div className={`mb-6 flex items-center gap-2 ${sidebarCollapsed ? 'flex-col' : 'justify-between'}`}>
           {renderBrand(sidebarCollapsed)}
@@ -338,7 +333,7 @@ export default function Layout() {
         aria-hidden="true"
       />
       <aside
-        className={`md:hidden fixed top-0 start-0 z-[70] h-full w-[85vw] max-w-xs flex flex-col bg-gradient-to-b from-[#FAF1F5] to-[#F4F4EF] py-5 px-4 shadow-2xl transition-transform duration-300 ${
+        className={`md:hidden fixed top-0 start-0 z-[70] h-full w-[85vw] max-w-xs flex flex-col bg-gradient-to-b from-brand-light to-[#F4F4EF] py-5 px-4 shadow-2xl transition-transform duration-300 ${
           mobileNavOpen ? '[transform:translateX(0)]' : isRtl ? '[transform:translateX(100%)]' : '[transform:translateX(-100%)]'
         }`}
         aria-hidden={!mobileNavOpen}

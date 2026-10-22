@@ -145,8 +145,8 @@ export default function TransferCommissionSettings({ dir, message, setMessage, s
                 <p className="text-xs text-on-surface-subtle mt-1">Manual Transfers</p>
               </div>
               <div className="bg-brand-accent/10 rounded-xl p-4 text-center">
-                <p className="text-2xl font-bold text-[#B8860B]">{settings.stats.total_auction_transfers || 0}</p>
-                <p className="text-xs text-[#B8860B] mt-1">Auction Transfers</p>
+                <p className="text-2xl font-bold text-brand-accent-dark">{settings.stats.total_auction_transfers || 0}</p>
+                <p className="text-xs text-brand-accent-dark mt-1">Auction Transfers</p>
               </div>
               <div className="bg-surface-light rounded-xl p-4 text-center">
                 <p className="text-2xl font-bold text-brand-primary">{fmt(settings.stats.total_commission)}</p>

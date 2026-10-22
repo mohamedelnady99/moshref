@@ -216,7 +216,7 @@ export default function TransferCreateModal({ onClose, onCreated, preselectedAni
                         type="checkbox"
                         checked={selectedAnimalIds.includes(animal.id)}
                         onChange={() => toggleAnimal(animal.id)}
-                        className="w-4 h-4 rounded accent-[#002819]"
+                        className="w-4 h-4 rounded accent-brand-primary"
                       />
                       <span className="text-xs font-semibold text-brand-primary flex-1">{animal.name || `#${animal.animal_id}`}</span>
                       <span className="text-[11px] text-on-surface-variant/50">{animal.species || ''}</span>

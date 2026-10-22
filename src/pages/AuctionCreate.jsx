@@ -194,7 +194,7 @@ export default function AuctionCreate() {
                 onChange={handleChange}
                 required
                 placeholder={t('auctionsPage.titlePlaceholder')}
-                className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-[#002819]/20"
+                className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-brand-primary/20"
               />
             </div>
 
@@ -209,7 +209,7 @@ export default function AuctionCreate() {
                   required
                   min="1"
                   placeholder="25000"
-                  className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-[#002819]/20"
+                  className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-brand-primary/20"
                 />
               </div>
 
@@ -222,7 +222,7 @@ export default function AuctionCreate() {
                   onChange={handleChange}
                   min="0"
                   placeholder="50000"
-                  className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-[#002819]/20"
+                  className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-brand-primary/20"
                 />
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function AuctionCreate() {
                 name="duration_hours"
                 value={formData.duration_hours}
                 onChange={handleChange}
-                className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-[#002819]/20"
+                className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-semibold focus:ring-2 focus:ring-brand-primary/20"
               >
                 <option value={24}>24 {t('auctionsPage.hours')} (1 {t('auctionsPage.days')})</option>
                 <option value={48}>48 {t('auctionsPage.hours')} (2 {t('auctionsPage.days')})</option>
@@ -250,7 +250,7 @@ export default function AuctionCreate() {
                 onChange={handleChange}
                 rows="4"
                 placeholder={t('auctionsPage.descriptionPlaceholder')}
-                className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-medium focus:ring-2 focus:ring-[#002819]/20 resize-none"
+                className="w-full bg-surface-light border-none rounded-xl px-4 py-3.5 text-brand-primary font-medium focus:ring-2 focus:ring-brand-primary/20 resize-none"
               />
             </div>
           </div>

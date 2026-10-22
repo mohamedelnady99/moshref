@@ -24,7 +24,7 @@ export default function DashboardWidget({ id, title, children, dragHandleProps }
     <div
       ref={setNodeRef}
       style={style}
-      className="card group relative border border-brand-primary/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(6,64,43,0.1)]"
+      className="card group relative border border-brand-primary/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgb(var(--color-secondary-rgb)/0.1)]"
     >
       <div
         {...attributes}

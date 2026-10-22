@@ -4,6 +4,7 @@ import { apiFetch } from '../../utils/api';
 import { useI18n } from '../../i18n';
 import { SettingsCard, SubTabBar, InputField, SelectField, CheckboxField, ToggleSwitch, SaveButton } from './index';
 
+import { themeColors } from '../../config/theme';
 const medicalIconOptions = [
   { value: 'medical_services', label: 'medical_services' },
   { value: 'vaccines', label: 'vaccines' },
@@ -35,11 +36,11 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
   const { t } = useI18n();
 
   const [medicalRecordTypes, setMedicalRecordTypes] = useState([]);
-  const [medicalTypeForm, setMedicalTypeForm] = useState({ name: '', slug: '', icon: 'medical_services', color: '#002819', is_active: true });
+  const [medicalTypeForm, setMedicalTypeForm] = useState({ name: '', slug: '', icon: 'medical_services', color: themeColors.primary, is_active: true });
   const [editingMedicalType, setEditingMedicalType] = useState(null);
 
   const [vaccinationTypesList, setVaccinationTypesList] = useState([]);
-  const [vaccinationTypeForm, setVaccinationTypeForm] = useState({ name: '', slug: '', icon: 'vaccines', color: '#002819', is_active: true });
+  const [vaccinationTypeForm, setVaccinationTypeForm] = useState({ name: '', slug: '', icon: 'vaccines', color: themeColors.primary, is_active: true });
   const [editingVaccinationType, setEditingVaccinationType] = useState(null);
 
   const [medicalSubTab, setMedicalSubTab] = useState('recordTypes');
@@ -75,7 +76,7 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
       body: JSON.stringify(medicalTypeForm),
     });
     if (res.ok) {
-      setMedicalTypeForm({ name: '', slug: '', icon: 'medical_services', color: '#002819', is_active: true });
+      setMedicalTypeForm({ name: '', slug: '', icon: 'medical_services', color: themeColors.primary, is_active: true });
       setEditingMedicalType(null);
       await fetchMedicalTypes();
       setMessage({ type: 'success', text: 'Medical type saved' });
@@ -101,7 +102,7 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
       body: JSON.stringify(vaccinationTypeForm),
     });
     if (res.ok) {
-      setVaccinationTypeForm({ name: '', slug: '', icon: 'vaccines', color: '#002819', is_active: true });
+      setVaccinationTypeForm({ name: '', slug: '', icon: 'vaccines', color: themeColors.primary, is_active: true });
       setEditingVaccinationType(null);
       await fetchVaccinationTypes();
       setMessage({ type: 'success', text: 'Vaccination type saved' });
@@ -166,13 +167,13 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
                 <SaveButton
                   onClick={handleSaveMedicalType}
                   saving={false}
-                  color="#002819"
+                  color={themeColors.primary}
                 >
                   {editingMedicalType ? 'Update' : 'Add'}
                 </SaveButton>
                 {editingMedicalType && (
                   <button
-                    onClick={() => { setEditingMedicalType(null); setMedicalTypeForm({ name: '', slug: '', icon: 'medical_services', color: '#002819', is_active: true }); }}
+                    onClick={() => { setEditingMedicalType(null); setMedicalTypeForm({ name: '', slug: '', icon: 'medical_services', color: themeColors.primary, is_active: true }); }}
                     className="px-4 py-3 bg-on-surface-subtle text-white rounded-xl font-bold hover:bg-[#5a6265] transition"
                   >
                     Cancel
@@ -201,7 +202,7 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
                     </div>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => { setEditingMedicalType(mt.id); setMedicalTypeForm({ name: mt.name, slug: mt.slug, icon: mt.icon || 'medical_services', color: mt.color || '#002819', is_active: mt.is_active }); }}
+                        onClick={() => { setEditingMedicalType(mt.id); setMedicalTypeForm({ name: mt.name, slug: mt.slug, icon: mt.icon || 'medical_services', color: mt.color || themeColors.primary, is_active: mt.is_active }); }}
                         className="p-2 text-[#3B82F6] hover:bg-[#3B82F6]/10 rounded-lg transition"
                       >
                         <MaterialSymbol icon="edit" size={18} />
@@ -266,13 +267,13 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
                 <SaveButton
                   onClick={handleSaveVaccinationType}
                   saving={false}
-                  color="#002819"
+                  color={themeColors.primary}
                 >
                   {editingVaccinationType ? 'Update' : 'Add'}
                 </SaveButton>
                 {editingVaccinationType && (
                   <button
-                    onClick={() => { setEditingVaccinationType(null); setVaccinationTypeForm({ name: '', slug: '', icon: 'vaccines', color: '#002819', is_active: true }); }}
+                    onClick={() => { setEditingVaccinationType(null); setVaccinationTypeForm({ name: '', slug: '', icon: 'vaccines', color: themeColors.primary, is_active: true }); }}
                     className="px-4 py-3 bg-on-surface-subtle text-white rounded-xl font-bold hover:bg-[#5a6265] transition"
                   >
                     Cancel
@@ -301,7 +302,7 @@ export default function MedicalTypeSettings({ dir, message, setMessage }) {
                     </div>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => { setEditingVaccinationType(vt.id); setVaccinationTypeForm({ name: vt.name, slug: vt.slug, icon: vt.icon || 'vaccines', color: vt.color || '#002819', is_active: vt.is_active }); }}
+                        onClick={() => { setEditingVaccinationType(vt.id); setVaccinationTypeForm({ name: vt.name, slug: vt.slug, icon: vt.icon || 'vaccines', color: vt.color || themeColors.primary, is_active: vt.is_active }); }}
                         className="p-2 text-[#3B82F6] hover:bg-[#3B82F6]/10 rounded-lg transition"
                       >
                         <MaterialSymbol icon="edit" size={18} />

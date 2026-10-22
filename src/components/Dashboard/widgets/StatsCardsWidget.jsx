@@ -35,7 +35,7 @@ export default function StatsCardsWidget({ dashboardData }) {
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
-      <div className="group rounded-2xl border border-brand-primary/5 bg-gradient-to-br from-white to-surface-light/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.1)]">
+      <div className="group rounded-2xl border border-brand-primary/5 bg-gradient-to-br from-white to-surface-light/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(var(--color-secondary-rgb)/0.1)]">
         <div className="mb-7 flex items-start justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary shadow-lg shadow-brand-primary/20">
             <MaterialSymbol icon="pets" size={24} className="text-brand-accent" weight="fill" />
@@ -48,7 +48,7 @@ export default function StatsCardsWidget({ dashboardData }) {
         </div>
       </div>
 
-      <div className="group rounded-2xl border border-brand-primary/5 bg-gradient-to-br from-white to-surface-light/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.1)]">
+      <div className="group rounded-2xl border border-brand-primary/5 bg-gradient-to-br from-white to-surface-light/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(var(--color-secondary-rgb)/0.1)]">
         <div className="mb-7 flex items-start justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary shadow-lg shadow-brand-primary/20">
             <MaterialSymbol icon="sensors" size={24} className="text-brand-accent" weight="fill" />
@@ -84,7 +84,7 @@ export default function StatsCardsWidget({ dashboardData }) {
         </div>
       </div>
 
-      <div className="group rounded-2xl bg-gradient-to-br from-brand-secondary to-brand-primary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+      <div className="group rounded-2xl bg-gradient-to-br from-brand-secondary to-brand-primary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(var(--color-secondary-rgb)/0.2)]">
         <div className="mb-7 flex items-start justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
             <MaterialSymbol icon="device_thermostat" size={24} className="text-brand-accent" weight="fill" />
@@ -105,7 +105,7 @@ export default function StatsCardsWidget({ dashboardData }) {
       </div>
 
       {userRole !== 'Doctor' && userRole !== 'Shepherd' && (isAdmin && stats.subscription?.is_admin ? (
-        <Link to="/users" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+        <Link to="/users" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(var(--color-secondary-rgb)/0.2)]">
           <div className="mb-7 flex items-start justify-between">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="admin_panel_settings" size={24} className="text-brand-accent" weight="fill" />
@@ -120,7 +120,7 @@ export default function StatsCardsWidget({ dashboardData }) {
           </div>
         </Link>
       ) : isAdminOrOwner && stats.subscription ? (
-        <Link to="/subscription" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+        <Link to="/subscription" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(var(--color-secondary-rgb)/0.2)]">
           <div className="mb-7 flex items-start justify-between">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="stars" size={24} className="text-brand-accent" weight="fill" />
@@ -139,7 +139,7 @@ export default function StatsCardsWidget({ dashboardData }) {
           </div>
         </Link>
       ) : isAdminOrOwner && !stats.subscription ? (
-        <Link to="/subscription" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,64,43,0.2)]">
+        <Link to="/subscription" className="group rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-5 text-white shadow-lg shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(var(--color-secondary-rgb)/0.2)]">
           <div className="mb-7 flex items-start justify-between">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
               <MaterialSymbol icon="stars" size={24} className="text-brand-accent" weight="fill" />

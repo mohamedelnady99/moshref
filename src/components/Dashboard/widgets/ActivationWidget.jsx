@@ -47,7 +47,7 @@ export default function ActivationWidget() {
   if (pendingOrders.length === 0) return null;
 
   return (
-    <div className="card p-5 bg-gradient-to-br from-brand-accent/10 to-[#735C00]/10 border border-brand-accent/30">
+    <div className="card p-5 bg-gradient-to-br from-brand-accent/10 to-brand-accent-dark/10 border border-brand-accent/30">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-brand-accent/20 flex items-center justify-center">

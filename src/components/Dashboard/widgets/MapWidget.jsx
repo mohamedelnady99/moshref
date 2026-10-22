@@ -9,6 +9,7 @@ import { useI18n } from '../../../i18n';
 import { getSpeciesEmoji } from '../../../utils/speciesIcons';
 import { useAuth } from '../../../context/AuthContext';
 
+import { themeColors } from '../../../config/theme';
 const createAnimalIcon = (color, species = 'Camel') => {
   return L.divIcon({
     className: 'custom-marker',
@@ -138,7 +139,7 @@ export default function MapWidget({ dashboardData }) {
             onClick={() => setShowGeofences(!showGeofences)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
               showGeofences
-                ? 'bg-gradient-to-br from-[#735C00] to-[#D4AF37] text-white shadow-lg shadow-brand-accent/20'
+                ? 'bg-gradient-to-br from-brand-accent-dark to-brand-accent text-white shadow-lg shadow-brand-accent/20'
                 : 'bg-surface-light text-on-surface-variant hover:bg-surface-high'
             }`}
           >
@@ -181,8 +182,8 @@ export default function MapWidget({ dashboardData }) {
                 key={geofence.id}
                 positions={coords}
                 pathOptions={{
-                  color: geofence.color || '#D4AF37',
-                  fillColor: geofence.color || '#D4AF37',
+                  color: geofence.color || themeColors.accent,
+                  fillColor: geofence.color || themeColors.accent,
                   fillOpacity: 0.12,
                   weight: 2,
                   dashArray: geofence.is_active === false ? '6,4' : null,
@@ -191,7 +192,7 @@ export default function MapWidget({ dashboardData }) {
                 <Popup>
                   <div className="p-2 min-w-[160px]">
                     <div className="flex items-center gap-2 mb-1">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: geofence.color || '#D4AF37' }} />
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: geofence.color || themeColors.accent }} />
                       <h3 className="font-bold text-brand-primary">{geofence.name}</h3>
                     </div>
                     <p className="text-xs text-on-surface-subtle">{coords.length} boundary points</p>

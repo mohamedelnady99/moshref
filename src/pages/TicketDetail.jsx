@@ -6,12 +6,13 @@ import { apiFetch, storageUrl } from '../utils/api';
 import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 
+import { themeColors } from '../config/theme';
 const PRIORITY_COLORS = { low: 'bg-gray-400', medium: 'bg-amber-400', high: 'bg-orange-500', urgent: 'bg-red-500' };
 const PRIORITY_BG = { low: 'bg-gray-100 text-gray-600', medium: 'bg-amber-100 text-amber-700', high: 'bg-orange-100 text-orange-700', urgent: 'bg-red-100 text-red-700' };
 const STATUS_COLORS = { open: 'bg-green-500', in_progress: 'bg-amber-500', resolved: 'bg-blue-500', closed: 'bg-gray-500' };
 const STATUS_BG = { open: 'bg-green-100 text-green-700', in_progress: 'bg-amber-100 text-amber-700', resolved: 'bg-blue-100 text-blue-700', closed: 'bg-gray-100 text-gray-600' };
 const STATUS_LABELS = { open: 'open', in_progress: 'inProgress', resolved: 'resolved', closed: 'closed' };
-const AVATAR_COLORS = ['#002819', '#06402B', '#D4AF37', '#8B4513', '#2E5090', '#7B2D8B', '#B8860B', '#4A6741'];
+const AVATAR_COLORS = [themeColors.primary, themeColors.secondary, themeColors.accent, '#8B4513', '#2E5090', '#7B2D8B', themeColors.accentDark, '#4A6741'];
 
 function getInitials(name) {
   return (name || '?').split(' ').map(s => s[0]).join('').toUpperCase().slice(0, 2);
@@ -554,7 +555,7 @@ export default function TicketDetail() {
                             </div>
                           )}
                           {msg.parent && (
-                            <div className={`mb-1 px-3 py-1.5 rounded-lg bg-surface-light border-s-2 border-s-[#D4AF37] text-xs text-on-surface-variant/60 italic max-w-[300px] truncate`}>
+                            <div className={`mb-1 px-3 py-1.5 rounded-lg bg-surface-light border-s-2 border-s-brand-accent text-xs text-on-surface-variant/60 italic max-w-[300px] truncate`}>
                               {msg.parent.body || ''}
                             </div>
                           )}

@@ -7,7 +7,8 @@ import { useAuth } from '../context/AuthContext';
 import { useI18n } from '../i18n';
 import { OrdersPanel } from './OrdersPage';
 
-function BarChart({ data, height = 200, color = '#002819', maxValue, labelKey }) {
+import { themeColors } from '../config/theme';
+function BarChart({ data, height = 200, color = themeColors.primary, maxValue, labelKey }) {
   const max = maxValue || Math.max(...data.map(d => d.value), 1);
   const barWidth = Math.max(20, Math.min(60, 600 / data.length - 8));
 
@@ -70,7 +71,7 @@ function DonutChart({ segments, total, size = 160 }) {
   );
 }
 
-function TrendChart({ data, height = 200, valueKey = 'value', color = '#002819' }) {
+function TrendChart({ data, height = 200, valueKey = 'value', color = themeColors.primary }) {
   if (!data || data.length === 0) return <div className="text-center py-12 text-on-surface-subtle text-sm">No data</div>;
 
   const values = data.map(d => d[valueKey] || 0);
@@ -1608,7 +1609,7 @@ export default function SubscriptionsPage() {
                   value={subscriberSearch}
                   onChange={(e) => setSubscriberSearch(e.target.value)}
                   placeholder="Search by name or email..."
-                  className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -1616,7 +1617,7 @@ export default function SubscriptionsPage() {
                   <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                    className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                   >
                     <option value="All">All</option>
                     <option value="active">Active</option>
@@ -1632,7 +1633,7 @@ export default function SubscriptionsPage() {
                 <select
                   value={tierFilter}
                   onChange={(e) => setTierFilter(e.target.value)}
-                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 >
                   <option value="All">All</option>
                   {tiers.map(t => (
@@ -1645,7 +1646,7 @@ export default function SubscriptionsPage() {
                 <select
                   value={dateRangeFilter}
                   onChange={(e) => setDateRangeFilter(e.target.value)}
-                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 >
                   <option value="All">All Time</option>
                   <option value="7">Last 7 Days</option>
@@ -1686,7 +1687,7 @@ export default function SubscriptionsPage() {
                       <input type="checkbox"
                         checked={selectedSubs.length > 0 && selectedSubs.length === sortedSubscriptions.length}
                         onChange={(e) => { if (e.target.checked) { setSelectedSubs(sortedSubscriptions.map(s => s.user_id)); } else { setSelectedSubs([]); } }}
-                        className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]" />
+                        className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary" />
                     </th>
                     <th className="text-start py-3 px-4 text-sm font-bold text-gray-600 cursor-pointer select-none" onClick={() => handleSort('user')}>
                       <div className="flex items-center">
@@ -1743,7 +1744,7 @@ export default function SubscriptionsPage() {
                         <input type="checkbox"
                           checked={selectedSubs.includes(sub.user_id)}
                           onChange={(e) => { if (e.target.checked) { setSelectedSubs(prev => [...prev, sub.user_id]); } else { setSelectedSubs(prev => prev.filter(id => id !== sub.user_id)); } }}
-                          className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]" />
+                          className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary" />
                       </td>
                       <td className="py-3 px-4">
                         <div className="font-medium text-brand-primary">{sub.user?.name || 'Unknown'}</div>
@@ -1918,7 +1919,7 @@ export default function SubscriptionsPage() {
                   value={paymentSearch}
                   onChange={(e) => setPaymentSearch(e.target.value)}
                   placeholder="Search by owner name or email..."
-                  className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -1926,7 +1927,7 @@ export default function SubscriptionsPage() {
                 <select
                   value={paymentMethodFilter}
                   onChange={(e) => setPaymentMethodFilter(e.target.value)}
-                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 >
                   <option value="All">All</option>
                   {paymentMethods.map(pm => (
@@ -1939,7 +1940,7 @@ export default function SubscriptionsPage() {
                 <select
                   value={paymentStatusFilter}
                   onChange={(e) => setPaymentStatusFilter(e.target.value)}
-                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 >
                   <option value="All">All</option>
                   <option value="active">Active</option>
@@ -1954,7 +1955,7 @@ export default function SubscriptionsPage() {
                 <select
                   value={paymentDateFilter}
                   onChange={(e) => setPaymentDateFilter(e.target.value)}
-                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 >
                   <option value="All">All Time</option>
                   <option value="7">Last 7 Days</option>
@@ -2014,7 +2015,7 @@ export default function SubscriptionsPage() {
                             setSelectedPayments([]);
                           }
                         }}
-                        className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                        className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                       />
                     </th>
                     <th className="text-start py-3 px-4 text-sm font-bold text-gray-600 cursor-pointer select-none" onClick={() => handlePaymentSort('owner')}>
@@ -2106,7 +2107,7 @@ export default function SubscriptionsPage() {
                                 setSelectedPayments(prev => prev.filter(id => id !== sub.user_id));
                               }
                             }}
-                            className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                            className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                           />
                         </td>
                         <td className="py-3 px-4">
@@ -2671,7 +2672,7 @@ export default function SubscriptionsPage() {
                           const total = stats.tier_distribution.reduce((sum, t) => sum + t.count, 0);
                           return stats.tier_distribution.map((t, i) => ({
                             value: parseFloat(((t.count / Math.max(total, 1)) * 100).toFixed(1)),
-                            color: ['#002819', '#D4AF37', '#3B82F6', '#8B5CF6', '#10B981', '#F59E0B'][i % 6],
+                            color: [themeColors.primary, themeColors.accent, '#3B82F6', '#8B5CF6', '#10B981', '#F59E0B'][i % 6],
                           }));
                         })()}
                         total={stats.tier_distribution.reduce((sum, t) => sum + t.count, 0)}
@@ -2683,13 +2684,13 @@ export default function SubscriptionsPage() {
                             <div key={i}>
                               <div className="flex items-center justify-between mb-1">
                                 <div className="flex items-center gap-2">
-                                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: ['#002819', '#D4AF37', '#3B82F6', '#8B5CF6', '#10B981', '#F59E0B'][i % 6] }} />
+                                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: [themeColors.primary, themeColors.accent, '#3B82F6', '#8B5CF6', '#10B981', '#F59E0B'][i % 6] }} />
                                   <span className="text-sm font-semibold text-gray-700">{t.name || t.tier_name || `Tier ${i + 1}`}</span>
                                 </div>
                                 <span className="text-sm font-bold text-brand-primary">{t.count} <span className="text-[10px] font-normal text-gray-500">({total > 0 ? ((t.count / total) * 100).toFixed(0) : 0}%)</span></span>
                               </div>
                               <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                <div className="h-full rounded-full transition-all duration-500" style={{ width: `${total > 0 ? (t.count / total) * 100 : 0}%`, backgroundColor: ['#002819', '#D4AF37', '#3B82F6', '#8B5CF6', '#10B981', '#F59E0B'][i % 6] }} />
+                                <div className="h-full rounded-full transition-all duration-500" style={{ width: `${total > 0 ? (t.count / total) * 100 : 0}%`, backgroundColor: [themeColors.primary, themeColors.accent, '#3B82F6', '#8B5CF6', '#10B981', '#F59E0B'][i % 6] }} />
                               </div>
                             </div>
                           ));
@@ -2769,9 +2770,9 @@ export default function SubscriptionsPage() {
                         data={stats.revenue_over_time.map(r => ({
                           label: (r.label || r.month || '').slice(-2),
                           value: r.value || r.revenue || 0,
-                          color: '#D4AF37',
+                          color: themeColors.accent,
                         }))}
-                        color="#D4AF37"
+                        color={themeColors.accent}
                         height={180}
                       />
                     </div>
@@ -2807,7 +2808,7 @@ export default function SubscriptionsPage() {
                             const pct = ((pm.count || pm.subscribers || 0) / total) * 100;
                             return (
                               <div key={i} className="h-full transition-all duration-500 first:rounded-l-full last:rounded-r-full"
-                                style={{ width: `${pct}%`, backgroundColor: ['#002819', '#D4AF37', '#3B82F6', '#8B5CF6', '#10B981'][i % 5] }}
+                                style={{ width: `${pct}%`, backgroundColor: [themeColors.primary, themeColors.accent, '#3B82F6', '#8B5CF6', '#10B981'][i % 5] }}
                               />
                             );
                           })}
@@ -2951,7 +2952,7 @@ export default function SubscriptionsPage() {
                 <select
                   value={paymentMethodInput}
                   onChange={(e) => setPaymentMethodInput(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 >
                   <option value="">Not set</option>
                   {paymentMethods.map(pm => (
@@ -2966,7 +2967,7 @@ export default function SubscriptionsPage() {
                   value={paymentRefInput}
                   onChange={(e) => setPaymentRefInput(e.target.value)}
                   placeholder="Transaction ID, receipt #, or notes"
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                 />
               </div>
               <button
@@ -3038,7 +3039,7 @@ export default function SubscriptionsPage() {
               <div className="flex items-center gap-3">
                 <label className="text-xs font-semibold text-gray-600 w-20">Change Tier:</label>
                 <select
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#002819]/20"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-primary/20"
                   value={pendingTierChanges[editingSubscriber.user_id] || editingSubscriber.tier_id}
                   onChange={(e) => {
                     const val = e.target.value ? parseInt(e.target.value) : null;
@@ -3181,7 +3182,7 @@ export default function SubscriptionsPage() {
                     value={planCardNumber}
                     onChange={e => setPlanCardNumber(e.target.value)}
                     placeholder="4242 4242 4242 4242"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -3192,7 +3193,7 @@ export default function SubscriptionsPage() {
                       value={planCardExpiry}
                       onChange={e => setPlanCardExpiry(e.target.value)}
                       placeholder="MM/YY"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#002819]/20"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20"
                     />
                   </div>
                   <div>
@@ -3202,7 +3203,7 @@ export default function SubscriptionsPage() {
                       value={planCardCvc}
                       onChange={e => setPlanCardCvc(e.target.value)}
                       placeholder="123"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#002819]/20"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20"
                     />
                   </div>
                 </div>
@@ -3267,7 +3268,7 @@ export default function SubscriptionsPage() {
                     name="name"
                     defaultValue={editingTier?.name || ''}
                     required
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
                 <div>
@@ -3277,7 +3278,7 @@ export default function SubscriptionsPage() {
                     name="slug"
                     defaultValue={editingTier?.slug || ''}
                     required
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
               </div>
@@ -3288,7 +3289,7 @@ export default function SubscriptionsPage() {
                   type="text"
                   name="description"
                   defaultValue={editingTier?.description || ''}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                 />
               </div>
 
@@ -3301,7 +3302,7 @@ export default function SubscriptionsPage() {
                     defaultValue={editingTier?.price_monthly || 0}
                     min="0"
                     step="0.01"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
                 <div>
@@ -3312,7 +3313,7 @@ export default function SubscriptionsPage() {
                     defaultValue={editingTier?.price_yearly || 0}
                     min="0"
                     step="0.01"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
               </div>
@@ -3325,7 +3326,7 @@ export default function SubscriptionsPage() {
                     name="trial_days"
                     defaultValue={editingTier?.trial_days || 0}
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
                 <div>
@@ -3335,7 +3336,7 @@ export default function SubscriptionsPage() {
                     name="max_animals"
                     defaultValue={editingTier?.max_animals || 0}
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
                 <div>
@@ -3345,7 +3346,7 @@ export default function SubscriptionsPage() {
                     name="max_devices"
                     defaultValue={editingTier?.max_devices || 0}
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
               </div>
@@ -3358,7 +3359,7 @@ export default function SubscriptionsPage() {
                     name="max_users"
                     defaultValue={editingTier?.max_users || 0}
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
                 <div>
@@ -3368,7 +3369,7 @@ export default function SubscriptionsPage() {
                     name="sort_order"
                     defaultValue={editingTier?.sort_order || 10}
                     min="1"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#002819]/20"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary/20"
                   />
                 </div>
               </div>
@@ -3381,7 +3382,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_geofencing"
                       defaultChecked={editingTier?.has_geofencing}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">Geofencing</span>
                   </label>
@@ -3390,7 +3391,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_auctions"
                       defaultChecked={editingTier?.has_auctions}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">Auctions</span>
                   </label>
@@ -3399,7 +3400,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_advanced_reports"
                       defaultChecked={editingTier?.has_advanced_reports}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">Advanced Reports</span>
                   </label>
@@ -3408,7 +3409,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_api_access"
                       defaultChecked={editingTier?.has_api_access}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">API Access</span>
                   </label>
@@ -3417,7 +3418,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_ai_assistant"
                       defaultChecked={editingTier?.has_ai_assistant}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">AI Assistant</span>
                   </label>
@@ -3426,7 +3427,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_medical_records"
                       defaultChecked={editingTier?.has_medical_records}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">Medical Records</span>
                   </label>
@@ -3435,7 +3436,7 @@ export default function SubscriptionsPage() {
                       type="checkbox"
                       name="has_tasks"
                       defaultChecked={editingTier?.has_tasks}
-                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                      className="w-4 h-4 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                     />
                     <span className="text-sm">Tasks & Scheduling</span>
                   </label>
@@ -3448,7 +3449,7 @@ export default function SubscriptionsPage() {
                     type="checkbox"
                     name="is_featured"
                     defaultChecked={editingTier?.is_featured}
-                    className="w-5 h-5 text-brand-primary border-gray-300 rounded focus:ring-[#002819]"
+                    className="w-5 h-5 text-brand-primary border-gray-300 rounded focus:ring-brand-primary"
                   />
                   <div>
                     <span className="text-sm font-bold text-brand-primary">Featured Tier</span>

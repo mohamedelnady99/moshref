@@ -241,7 +241,7 @@ export default function AnimalForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Species</label>
-                <select name="species" value={formData.species} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20">
+                <select name="species" value={formData.species} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20">
                   <option value="Camel">Camel</option>
                   <option value="Goat">Goat</option>
                   <option value="Sheep">Sheep</option>
@@ -249,15 +249,15 @@ export default function AnimalForm() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Breed</label>
-                <input name="breed" value={formData.breed} onChange={handleChange} placeholder="e.g. Majaheem, Wadhah" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20" />
+                <input name="breed" value={formData.breed} onChange={handleChange} placeholder="e.g. Majaheem, Wadhah" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Date of Birth</label>
-                <input name="date_of_birth" value={formData.date_of_birth} onChange={handleChange} type="date" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20" />
+                <input name="date_of_birth" value={formData.date_of_birth} onChange={handleChange} type="date" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Gender</label>
-                <select name="gender" value={formData.gender} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20">
+                <select name="gender" value={formData.gender} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -271,11 +271,11 @@ export default function AnimalForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Color/Markings</label>
-                <textarea name="color_markings" value={formData.color_markings} onChange={handleChange} rows="3" placeholder="Describe distinctive markings..." className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20 resize-none" />
+                <textarea name="color_markings" value={formData.color_markings} onChange={handleChange} rows="3" placeholder="Describe distinctive markings..." className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20 resize-none" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Current Weight (kg)</label>
-                <input name="current_weight" value={formData.current_weight} onChange={handleChange} type="number" step="0.01" placeholder="0.00" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20" />
+                <input name="current_weight" value={formData.current_weight} onChange={handleChange} type="number" step="0.01" placeholder="0.00" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20" />
               </div>
             </div>
           </div>
@@ -286,11 +286,11 @@ export default function AnimalForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Baseline Temperature (°C)</label>
-                <input name="baseline_temperature" value={formData.baseline_temperature} onChange={handleChange} type="number" step="0.1" placeholder="38.5" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20" />
+                <input name="baseline_temperature" value={formData.baseline_temperature} onChange={handleChange} type="number" step="0.1" placeholder="38.5" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-on-surface-subtle uppercase tracking-wider">Normal Heart Rate (BPM)</label>
-                <input name="normal_heart_rate" value={formData.normal_heart_rate} onChange={handleChange} type="number" placeholder="45" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20" />
+                <input name="normal_heart_rate" value={formData.normal_heart_rate} onChange={handleChange} type="number" placeholder="45" className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20" />
               </div>
             </div>
           </div>
@@ -334,7 +334,7 @@ export default function AnimalForm() {
               </div>
             ) : (
               <>
-                <select name="device_id" value={formData.device_id} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20">
+                <select name="device_id" value={formData.device_id} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20">
                   <option value="">No Device</option>
                   {availableDevices.map(device => (
                     <option key={device.id} value={device.device_id}>
@@ -359,7 +359,7 @@ export default function AnimalForm() {
             ) : (
               <>
                 {!isOwner && !isManager ? (
-                  <select name="owner_id" value={formData.owner_id} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#002819]/20">
+                  <select name="owner_id" value={formData.owner_id} onChange={handleChange} className="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary/20">
                     <option value="">Select Owner</option>
                     {owners.map(owner => (
                       <option key={owner.id} value={owner.id}>

@@ -23,7 +23,7 @@ export default function MedicalOverviewWidget({ dashboardData }) {
           <p className="text-xs text-on-surface-subtle mt-1">View all records</p>
         </Link>
         <Link to="/vaccination-schedule" className="card p-5 text-center hover:shadow-md transition-shadow">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#735C00] to-[#D4AF37] flex items-center justify-center mx-auto mb-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-accent-dark to-brand-accent flex items-center justify-center mx-auto mb-3">
             <MaterialSymbol icon="vaccines" size={20} className="text-white" />
           </div>
           <p className="font-bold text-sm text-brand-primary">{t('nav.vaccinationSchedule')}</p>

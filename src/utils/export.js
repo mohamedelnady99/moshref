@@ -1,5 +1,6 @@
 import { apiFetch } from './api';
 
+import { brand } from '../config/brand';
 export const exportData = async (endpoint, filename) => {
   try {
     const response = await apiFetch(endpoint, {
@@ -41,7 +42,7 @@ export const exportDatabase = async () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `oasis_database_${new Date().toISOString().split('T')[0]}.sql`;
+    a.download = `${brand.slug}_database_${new Date().toISOString().split('T')[0]}.sql`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

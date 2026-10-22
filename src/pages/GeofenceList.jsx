@@ -12,7 +12,8 @@ import { MapContainer, TileLayer, Polygon, Marker, Popup, useMap } from 'react-l
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-function GeofenceDrawer({ coordinates, onCoordinatesChange, animals, devices, geofenceColor = '#D4AF37' }) {
+import { themeColors } from '../config/theme';
+function GeofenceDrawer({ coordinates, onCoordinatesChange, animals, devices, geofenceColor = themeColors.accent }) {
   const map = useMap();
   const [points, setPoints] = useState(coordinates || []);
 
@@ -145,7 +146,7 @@ export default function GeofenceList() {
   const [formData, setFormData] = useState({
     name: '',
     coordinates: '',
-    color: '#D4AF37',
+    color: themeColors.accent,
     alert_type: 'both',
   });
   const [drawingMode, setDrawingMode] = useState(false);
@@ -227,7 +228,7 @@ export default function GeofenceList() {
 
   const openCreateModal = () => {
     setEditingGeofence(null);
-    setFormData({ name: '', coordinates: '', color: '#D4AF37', alert_type: 'both' });
+    setFormData({ name: '', coordinates: '', color: themeColors.accent, alert_type: 'both' });
     setDrawnCoords([]);
     setShowCreateModal(true);
   };

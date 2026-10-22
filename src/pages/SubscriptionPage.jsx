@@ -7,11 +7,13 @@ import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 import { getPendingSubscription, setPendingSubscription } from '../utils/cookies';
 
-const TIER_COLORS = ['#002819', '#06402B', '#D4AF37', '#002819'];
+import { themeColors } from '../config/theme';
+import { brandName } from '../config/brand';
+const TIER_COLORS = [themeColors.primary, themeColors.secondary, themeColors.accent, themeColors.primary];
 const TIER_ICONS = ['eco', 'growing', 'stars', 'workspace_premium'];
 
 export default function SubscriptionPage() {
-  const { t, dir } = useI18n();
+  const { t, dir, locale } = useI18n();
   const isRtl = dir === 'rtl';
   const { user } = useAuth();
   const isAdmin = user?.role === 'Admin';
@@ -108,11 +110,11 @@ export default function SubscriptionPage() {
   return (
     <div className="flex-1 max-w-4xl mx-auto w-full p-6 sm:p-8 space-y-8">
       {!isAdmin && (isFromRegistration || isNewUser) && currentSubscription?.status !== 'active' && currentSubscription?.status !== 'pending_payment' && (
-        <div className="bg-gradient-to-br from-brand-accent/15 via-[#D4AF37]/5 to-brand-primary/10 border border-brand-accent/40 rounded-3xl p-8 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-br from-brand-accent/15 via-brand-accent/5 to-brand-primary/10 border border-brand-accent/40 rounded-3xl p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-40 h-40 bg-brand-accent/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-primary/5 rounded-full translate-y-1/2 -translate-x-1/2" />
           <MaterialSymbol icon="celebration" size={48} className="text-brand-accent mx-auto mb-3" weight="fill" />
-          <h2 className="text-2xl font-bold text-brand-primary mb-2">{t('subscription.welcomeToOasis')}</h2>
+          <h2 className="text-2xl font-bold text-brand-primary mb-2">{t('subscription.welcomeToOasis', { name: brandName(locale) })}</h2>
           <p className="text-on-surface-variant max-w-lg mx-auto">
             {isFromRegistration ? t('subscription.selectPlanToStart') : t('subscription.selectPlanToUpgrade')}
           </p>
@@ -204,7 +206,7 @@ export default function SubscriptionPage() {
                   isCurrent
                     ? 'border-brand-accent ring-2 ring-brand-accent/20'
                     : isFeatured && !isCurrent
-                      ? 'border-brand-primary ring-2 ring-[#002819]/15 bg-gradient-to-b from-brand-primary/5 to-white'
+                      ? 'border-brand-primary ring-2 ring-brand-primary/15 bg-gradient-to-b from-brand-primary/5 to-white'
                       : isRecommended && !isCurrent
                         ? 'border-brand-primary/20'
                         : 'border-surface-high'

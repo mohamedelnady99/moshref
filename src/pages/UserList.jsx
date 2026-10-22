@@ -8,6 +8,7 @@ import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 import Pagination from '../components/Pagination';
 
+import { brand } from '../config/brand';
 export default function UserList() {
   const { t, dir } = useI18n();
   const { user } = useAuth();
@@ -142,7 +143,7 @@ const fetchData = async () => {
       <div className={`flex flex-col md:flex-row md:items-end justify-between gap-4 ${isRtl ? 'text-right' : ''}`}>
         <div>
           <h2 className="text-4xl font-black text-brand-primary">{t('users.title')}</h2>
-          <p className="text-on-surface-variant mt-2 font-medium">Coordinate access for your digital oasis ecosystem.</p>
+          <p className="text-on-surface-variant mt-2 font-medium">Coordinate access for your {brand.name} ecosystem.</p>
         </div>
         <div className="flex gap-3">
           {isAdmin && (

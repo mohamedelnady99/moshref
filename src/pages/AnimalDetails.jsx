@@ -151,7 +151,7 @@ const fetchAnimal = async () => {
                 <MaterialSymbol icon="pets" size={120} className="text-emerald-300" />
               </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/90 via-[#002819]/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/90 via-brand-primary/30 to-transparent"></div>
             <div className={`absolute bottom-0 right-0 left-0 p-10 flex flex-col md:flex-row justify-between items-end gap-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
               <div className={isRtl ? 'text-right' : ''}>
                 <div className={`flex items-center gap-3 mb-2 ${isRtl ? 'flex-row-reverse' : ''}`}>
@@ -296,7 +296,7 @@ const fetchAnimal = async () => {
             <span className="text-on-surface-variant font-bold">%</span>
           </div>
           <div className="mt-4 w-full bg-surface-dim h-1 rounded-full overflow-hidden">
-            <div className={`h-full rounded-full shadow-[0_0_8px_rgba(212,175,55,0.4)] ${(device?.battery_level || 0) > 50 ? 'bg-emerald-400' : (device?.battery_level || 0) > 20 ? 'bg-amber-400' : 'bg-red-400'}`} style={{ width: `${device?.battery_level || 0}%` }}></div>
+            <div className={`h-full rounded-full shadow-[0_0_8px_rgb(var(--color-accent-rgb)/0.4)] ${(device?.battery_level || 0) > 50 ? 'bg-emerald-400' : (device?.battery_level || 0) > 20 ? 'bg-amber-400' : 'bg-red-400'}`} style={{ width: `${device?.battery_level || 0}%` }}></div>
           </div>
         </div>
       </section>

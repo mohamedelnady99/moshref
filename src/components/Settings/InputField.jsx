@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { themeColors } from '../../config/theme';
 export function InputField({ label, value, onChange, placeholder, type = 'text', disabled, className = '', inputClassName = '', children }) {
   return (
     <div className={className}>
@@ -66,7 +67,7 @@ export function ToggleSwitch({ checked, onChange, label }) {
   );
 }
 
-export function SaveButton({ onClick, saving, children, color = '#002819', className = '' }) {
+export function SaveButton({ onClick, saving, children, color = themeColors.primary, className = '' }) {
   return (
     <button
       onClick={onClick}

@@ -101,7 +101,7 @@ export default function DeviceIntegrationSettings({ dir, message, setMessage, sa
               type="checkbox"
               checked={settings.device_simulator_enabled}
               onChange={(e) => setSettings({ ...settings, device_simulator_enabled: e.target.checked })}
-              className="w-5 h-5 accent-[#D4AF37]"
+              className="w-5 h-5 accent-brand-accent"
             />
           </label>
           <div className="p-4 bg-surface-dim rounded-xl">
@@ -123,7 +123,7 @@ export default function DeviceIntegrationSettings({ dir, message, setMessage, sa
               type="checkbox"
               checked={settings.device_real_data_enabled}
               onChange={(e) => setSettings({ ...settings, device_real_data_enabled: e.target.checked })}
-              className="w-5 h-5 accent-[#D4AF37]"
+              className="w-5 h-5 accent-brand-accent"
             />
           </label>
 
@@ -184,7 +184,7 @@ export default function DeviceIntegrationSettings({ dir, message, setMessage, sa
               type="checkbox"
               checked={settings.device_mqtt_enabled}
               onChange={(e) => setSettings({ ...settings, device_mqtt_enabled: e.target.checked })}
-              className="w-5 h-5 accent-[#D4AF37]"
+              className="w-5 h-5 accent-brand-accent"
             />
           </label>
 

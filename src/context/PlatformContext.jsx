@@ -2,10 +2,11 @@ import React from 'react';
 import { createContext, useContext, useState, useEffect } from 'react';
 import { apiFetch, storageUrl } from '../utils/api';
 
+import { brand } from '../config/brand';
 const PlatformContext = createContext();
 
 export function PlatformProvider({ children }) {
-  const [platformName, setPlatformName] = useState('The Oasis');
+  const [platformName, setPlatformName] = useState(brand.name);
   const [logoUrl, setLogoUrl] = useState('');
   const [faviconUrl, setFaviconUrl] = useState('');
   const [loginBackgroundUrl, setLoginBackgroundUrl] = useState('');
@@ -30,7 +31,7 @@ export function PlatformProvider({ children }) {
         if (res.ok) {
           const data = await res.json();
           const d = data?.data || {};
-          const name = d.platform_name || 'The Oasis';
+          const name = d.platform_name || brand.name;
           setPlatformName(name);
           document.title = name;
           setLogoUrl(d.logo_url || '');
@@ -55,7 +56,7 @@ export function PlatformProvider({ children }) {
       if (res.ok) {
         const data = await res.json();
         const d = data?.data || {};
-        const name = d.platform_name || 'The Oasis';
+        const name = d.platform_name || brand.name;
         setPlatformName(name);
         document.title = name;
         setLogoUrl(d.logo_url || '');

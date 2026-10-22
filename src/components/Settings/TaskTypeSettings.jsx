@@ -4,6 +4,7 @@ import { apiFetch } from '../../utils/api';
 import { useI18n } from '../../i18n';
 import { SettingsCard, SubTabBar, InputField, SelectField, CheckboxField, ToggleSwitch, SaveButton } from './index';
 
+import { themeColors } from '../../config/theme';
 const taskIconOptions = [
   { value: 'assignment', label: 'assignment' },
   { value: 'search', label: 'search' },
@@ -38,7 +39,7 @@ export default function TaskTypeSettings({ dir, message, setMessage }) {
   const { t } = useI18n();
 
   const [taskTypes, setTaskTypes] = useState([]);
-  const [taskTypeForm, setTaskTypeForm] = useState({ name: '', slug: '', icon: 'assignment', color: '#002819', is_active: true });
+  const [taskTypeForm, setTaskTypeForm] = useState({ name: '', slug: '', icon: 'assignment', color: themeColors.primary, is_active: true });
   const [editingTaskType, setEditingTaskType] = useState(null);
 
   const [taskLogTypes, setTaskLogTypes] = useState([]);
@@ -77,7 +78,7 @@ export default function TaskTypeSettings({ dir, message, setMessage }) {
       body: JSON.stringify(taskTypeForm),
     });
     if (res.ok) {
-      setTaskTypeForm({ name: '', slug: '', icon: 'assignment', color: '#002819', is_active: true });
+      setTaskTypeForm({ name: '', slug: '', icon: 'assignment', color: themeColors.primary, is_active: true });
       setEditingTaskType(null);
       await fetchTaskTypes();
     }
@@ -160,13 +161,13 @@ export default function TaskTypeSettings({ dir, message, setMessage }) {
                 <SaveButton
                   onClick={handleSaveTaskType}
                   saving={false}
-                  color="#002819"
+                  color={themeColors.primary}
                 >
                   {editingTaskType ? 'Update' : 'Add'}
                 </SaveButton>
                 {editingTaskType && (
                   <button
-                    onClick={() => { setEditingTaskType(null); setTaskTypeForm({ name: '', slug: '', icon: 'assignment', color: '#002819', is_active: true }); }}
+                    onClick={() => { setEditingTaskType(null); setTaskTypeForm({ name: '', slug: '', icon: 'assignment', color: themeColors.primary, is_active: true }); }}
                     className="px-4 py-3 bg-on-surface-subtle text-white rounded-xl font-bold hover:bg-[#5a6265] transition"
                   >
                     Cancel
@@ -195,7 +196,7 @@ export default function TaskTypeSettings({ dir, message, setMessage }) {
                     </div>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => { setEditingTaskType(tt.id); setTaskTypeForm({ name: tt.name, slug: tt.slug, icon: tt.icon || 'assignment', color: tt.color || '#002819', is_active: tt.is_active }); }}
+                        onClick={() => { setEditingTaskType(tt.id); setTaskTypeForm({ name: tt.name, slug: tt.slug, icon: tt.icon || 'assignment', color: tt.color || themeColors.primary, is_active: tt.is_active }); }}
                         className="p-2 text-[#3B82F6] hover:bg-[#3B82F6]/10 rounded-lg transition"
                       >
                         <MaterialSymbol icon="edit" size={18} />
@@ -272,7 +273,7 @@ export default function TaskTypeSettings({ dir, message, setMessage }) {
                 <SaveButton
                   onClick={handleSaveLogType}
                   saving={false}
-                  color="#002819"
+                  color={themeColors.primary}
                 >
                   {editingLogType ? 'Update' : 'Add'}
                 </SaveButton>

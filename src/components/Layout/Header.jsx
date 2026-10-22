@@ -9,6 +9,7 @@ import LanguageSwitcher from '../../i18n/LanguageSwitcher';
 import { apiFetch, storageUrl } from '../../utils/api';
 import TranslateButton from '../TranslateButton';
 
+import { brandMark } from '../../assets/brand';
 export default function Header({ onMenuClick }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(null);
@@ -142,13 +143,7 @@ export default function Header({ onMenuClick }) {
           <MaterialSymbol icon="menu" size={24} />
         </button>
         <Link to="/dashboard" className="hidden sm:flex md:hidden items-center gap-2 flex-shrink-0" aria-label={platformName}>
-          {logoUrl ? (
-            <img src={storageUrl(logoUrl)} alt={platformName} className="w-9 h-9 object-contain rounded-lg flex-shrink-0" />
-          ) : (
-            <div className="w-9 h-9 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-              <MaterialSymbol icon="eco" size={18} className="text-brand-accent" fill />
-            </div>
-          )}
+          <img src={logoUrl ? storageUrl(logoUrl) : brandMark} alt={platformName} className="w-9 h-9 object-contain rounded-lg flex-shrink-0" />
         </Link>
         <div className="relative w-full max-w-lg min-w-0">
           <MaterialSymbol
@@ -170,7 +165,7 @@ export default function Header({ onMenuClick }) {
             <span className="absolute top-1/2 -translate-y-1/2 end-3.5 w-4 h-4 border-2 border-brand-secondary/30 border-t-brand-secondary rounded-full animate-spin pointer-events-none" />
           )}
           {showSearchResults && (
-            <div className="absolute start-0 mt-2 w-[calc(100vw-1.5rem)] max-w-lg sm:w-full bg-white rounded-2xl shadow-[0_12px_32px_rgba(6,64,43,0.12)] border border-brand-primary/5 p-3 z-50 animate-fade-in">
+            <div className="absolute start-0 mt-2 w-[calc(100vw-1.5rem)] max-w-lg sm:w-full bg-white rounded-2xl shadow-[0_12px_32px_rgb(var(--color-secondary-rgb)/0.12)] border border-brand-primary/5 p-3 z-50 animate-fade-in">
               {searching ? (
                 <p className="text-sm text-on-surface-subtle text-center py-4">Searching...</p>
               ) : !hasResults ? (
@@ -267,7 +262,7 @@ export default function Header({ onMenuClick }) {
             )}
           </button>
           {showNotifications && (
-            <div className="notification-dropdown fixed sm:absolute inset-x-3 sm:inset-x-auto top-16 sm:top-full sm:end-0 mt-0 sm:mt-3 sm:w-96 bg-white rounded-2xl shadow-[0_12px_32px_rgba(6,64,43,0.12)] border border-brand-primary/5 p-4 sm:p-5 z-[100] animate-fade-in">
+            <div className="notification-dropdown fixed sm:absolute inset-x-3 sm:inset-x-auto top-16 sm:top-full sm:end-0 mt-0 sm:mt-3 sm:w-96 bg-white rounded-2xl shadow-[0_12px_32px_rgb(var(--color-secondary-rgb)/0.12)] border border-brand-primary/5 p-4 sm:p-5 z-[100] animate-fade-in">
               <div className="flex items-center justify-between gap-3 mb-4">
                 <h4 className="font-bold text-brand-primary text-lg">{t('common.notifications') || 'Notifications'}</h4>
                 <button onClick={async () => { await apiFetch('/api/notifications/read-all', { method: 'POST' }); fetchNotifications(); }} className="text-xs text-on-surface-subtle hover:text-brand-primary">

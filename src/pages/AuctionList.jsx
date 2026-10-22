@@ -611,7 +611,7 @@ function AuctionCard({ auction, onBid, navigate, isRtl }) {
   };
 
   return (
-    <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0px_12px_32px_rgba(6,64,43,0.06)] group hover:shadow-2xl transition-all duration-500 border border-outline/10">
+    <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0px_12px_32px_rgb(var(--color-secondary-rgb)/0.06)] group hover:shadow-2xl transition-all duration-500 border border-outline/10">
       <div className="relative h-56 overflow-hidden">
         {auction.animal?.identification_photo ? (
           <img

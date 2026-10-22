@@ -7,7 +7,8 @@ import { MaterialSymbol } from 'react-material-symbols';
 import { useI18n } from '../../../i18n';
 import { useAuth } from '../../../context/AuthContext';
 
-const COLORS = ['#002819', '#06402B', '#D4AF37', '#735C00', '#10b981', '#BA1A1A', '#8b5cf6', '#06b6d4'];
+import { themeColors } from '../../../config/theme';
+const COLORS = [themeColors.primary, themeColors.secondary, themeColors.accent, themeColors.accentDark, '#10b981', '#BA1A1A', '#8b5cf6', '#06b6d4'];
 
 function computeSpeciesData(animals) {
   const map = {};
@@ -56,8 +57,8 @@ function getRoleBasedCharts(role, adminSubStats, stats, speciesData, healthData,
           Subscriptions: r.count || 0,
         })),
         bars: [
-          { dataKey: 'Revenue', color: '#D4AF37' },
-          { dataKey: 'Subscriptions', color: '#06402B' },
+          { dataKey: 'Revenue', color: themeColors.accent },
+          { dataKey: 'Subscriptions', color: themeColors.secondary },
         ],
       });
     }

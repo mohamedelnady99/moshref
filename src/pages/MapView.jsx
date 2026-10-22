@@ -10,6 +10,7 @@ import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 import { getSpeciesEmoji } from '../utils/speciesIcons';
 
+import { themeColors } from '../config/theme';
 function MapUpdater({ bounds, zoomPosition, center }) {
   const map = useMap();
   
@@ -68,14 +69,14 @@ function GeofenceDrawer({ isDrawing, drawMode, onComplete, drawingRectStart, onR
         {points.map((point, idx) => (
           <Marker key={idx} position={point} icon={L.divIcon({
             className: 'temp-marker',
-            html: `<div style="width:12px;height:12px;background:#D4AF37;border:2px solid white;border-radius:50%;"></div>`,
+            html: `<div style="width:12px;height:12px;background:${themeColors.accent};border:2px solid white;border-radius:50%;"></div>`,
             iconSize: [12, 12],
             iconAnchor: [6, 6],
           })} />
         ))}
         <Polygon
           positions={points}
-          pathOptions={{ color: '#D4AF37', fillColor: '#D4AF37', fillOpacity: 0.2 }}
+          pathOptions={{ color: themeColors.accent, fillColor: themeColors.accent, fillOpacity: 0.2 }}
         />
       </>
     );
@@ -534,7 +535,7 @@ export default function MapView() {
         body: JSON.stringify({
           name: newGeofenceName,
           coordinates: JSON.stringify(pendingGeofencePoints),
-          color: '#D4AF37',
+          color: themeColors.accent,
           alert_type: newGeofenceAlertType,
         }),
       });
@@ -803,8 +804,8 @@ export default function MapView() {
                 key={geofence.id}
                 positions={coords}
                 pathOptions={{ 
-                  color: geofence.color || '#D4AF37', 
-                  fillColor: geofence.color || '#D4AF37', 
+                  color: geofence.color || themeColors.accent, 
+                  fillColor: geofence.color || themeColors.accent, 
                   fillOpacity: isSelected ? 0.35 : 0.15, 
                   weight: isSelected ? 3 : 2,
                   dashArray: geofence.is_active ? null : '8,8'
@@ -871,7 +872,7 @@ export default function MapView() {
               <Polyline
                 key={`path-${animal.id}`}
                 positions={positions}
-                color={isSelected ? '#D4AF37' : getAnimalStatus(animal) === 'critical' ? '#ef4444' : getAnimalStatus(animal) === 'warning' ? '#f59e0b' : '#10b981'}
+                color={isSelected ? themeColors.accent : getAnimalStatus(animal) === 'critical' ? '#ef4444' : getAnimalStatus(animal) === 'warning' ? '#f59e0b' : '#10b981'}
                 weight={isSelected ? 4 : 2}
                 opacity={isSelected ? 1 : 0.6}
               />
@@ -1467,7 +1468,7 @@ export default function MapView() {
               type="checkbox" 
               checked={autoRefresh} 
               onChange={(e) => setAutoRefresh(e.target.checked)}
-              className="w-4 h-4 rounded border-gray-300 text-brand-primary focus:ring-[#002819]"
+              className="w-4 h-4 rounded border-gray-300 text-brand-primary focus:ring-brand-primary"
             />
             <span className="text-xs text-on-surface-subtle">Auto-refresh</span>
           </label>

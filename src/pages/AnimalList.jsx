@@ -10,6 +10,7 @@ import { useI18n } from '../i18n';
 import Pagination from '../components/Pagination';
 import TransferCreateModal from '../components/Transfers/TransferCreateModal';
 
+import { themeColors } from '../config/theme';
 export default function AnimalList() {
   const { user } = useAuth();
   const { t, dir } = useI18n();
@@ -571,7 +572,7 @@ return (
                       <p className="text-xs text-on-surface-subtle">{t('animals.groups')}</p>
                       <div className="flex flex-wrap gap-1 mt-1">
                         {animal.groups?.length > 0 ? animal.groups.map(g => (
-                          <span key={g.id} className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ backgroundColor: g.color || '#D4AF37', color: '#fff' }}>
+                          <span key={g.id} className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ backgroundColor: g.color || themeColors.accent, color: '#fff' }}>
                             {g.name}
                           </span>
                         )) : <span className="text-xs font-semibold text-brand-primary">-</span>}

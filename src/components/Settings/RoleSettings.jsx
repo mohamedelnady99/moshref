@@ -4,6 +4,7 @@ import { apiFetch } from '../../utils/api';
 import { useI18n } from '../../i18n';
 import { SettingsCard, SubTabBar, InputField, SelectField, CheckboxField, ToggleSwitch, SaveButton } from './index';
 
+import { themeColors } from '../../config/theme';
 const defaultPermissions = [
   'user_view', 'user_create', 'user_edit', 'user_delete', 'user_assign_role',
   'animal_view', 'animal_create', 'animal_edit', 'animal_delete', 'animal_view_health',
@@ -178,7 +179,7 @@ export default function RoleSettings({ dir, message, setMessage, saving, setSavi
         <SaveButton
           onClick={handleSaveRole}
           saving={saving}
-          color={type === 'admin' ? '#D4AF37' : '#002819'}
+          color={type === 'admin' ? themeColors.accent : themeColors.primary}
         >
           {saving ? '...' : editingRole ? 'Update' : 'Add'} {type === 'admin' ? 'Staff' : 'Farm'} Role
         </SaveButton>

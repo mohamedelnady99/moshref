@@ -7,6 +7,7 @@ import { getSpeciesMaterialIcon } from '../utils/speciesIcons';
 import { useI18n } from '../i18n';
 import { appPath } from '../utils/appPath';
 
+import { brand } from '../config/brand';
 export default function EmbedAnimalList() {
   const [searchParams] = useSearchParams();
   const { t, dir, setLocale } = useI18n();
@@ -135,7 +136,7 @@ export default function EmbedAnimalList() {
         <div className="text-center mt-6 text-[10px] text-on-surface-subtle">
           {t('embedCodesSection.poweredBy') || 'Powered by'}{' '}
           <a href={appPath('/')} target="_top" className="text-brand-primary font-semibold hover:underline">
-            Oasis Trace
+            {brand.name}
           </a>
         </div>
       </div>

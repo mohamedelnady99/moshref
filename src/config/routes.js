@@ -45,6 +45,7 @@ const TransfersPage = lazy(() => import('../pages/TransfersPage'));
 const TransferDetail = lazy(() => import('../pages/TransferDetail'));
 const PrivacyPage = lazy(() => import('../pages/static/PrivacyPage'));
 const TermsPage = lazy(() => import('../pages/static/TermsPage'));
+
 export const routeConfig = {
   public: [
     { path: '/login', component: Login },
@@ -114,7 +115,6 @@ export const getRoutesForRole = (userRole) => {
       allowed.push(route.path);
     }
   });
-  
   return allowed;
 };
 

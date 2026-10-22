@@ -183,7 +183,7 @@ const fetchData = async () => {
 
   return (
     <form onSubmit={submit} className="min-h-screen pb-24">
-      <header className="bg-white/85 backdrop-blur-md sticky top-[69px] sm:top-[77px] z-30 w-full px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-brand-primary/5 flex flex-wrap justify-between items-center gap-3 shadow-[0px_12px_32px_rgba(6,64,43,0.06)]">
+      <header className="bg-white/85 backdrop-blur-md sticky top-[69px] sm:top-[77px] z-30 w-full px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-brand-primary/5 flex flex-wrap justify-between items-center gap-3 shadow-[0px_12px_32px_rgb(var(--color-secondary-rgb)/0.06)]">
         <div className={`flex items-center gap-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
           <button type="button" onClick={() => navigate('/users')} className="p-3 hover:bg-surface-light rounded-xl transition">
             <MaterialSymbol icon={isRtl ? 'arrow_forward' : 'arrow_back'} className="text-brand-secondary" />
@@ -374,7 +374,7 @@ const fetchData = async () => {
                     type="checkbox"
                     checked={notifyUser}
                     onChange={e => setNotifyUser(e.target.checked)}
-                    className="w-4 h-4 rounded border-surface-high text-brand-primary focus:ring-[#002819]"
+                    className="w-4 h-4 rounded border-surface-high text-brand-primary focus:ring-brand-primary"
                   />
                   <span className="text-sm text-on-surface-variant">Notify user about password change</span>
                 </label>

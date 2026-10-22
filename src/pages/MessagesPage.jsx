@@ -6,9 +6,10 @@ import { apiFetch, storageUrl } from '../utils/api';
 import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 
+import { themeColors } from '../config/theme';
 const PRIORITY_COLORS = { low: 'bg-gray-400', medium: 'bg-yellow-400', high: 'bg-orange-500', urgent: 'bg-red-500' };
 const STATUS_LABELS = { open: 'open', in_progress: 'inProgress', resolved: 'resolved', closed: 'closed' };
-const AVATAR_COLORS = ['#002819', '#06402B', '#D4AF37', '#8B4513', '#2E5090', '#7B2D8B', '#B8860B', '#4A6741'];
+const AVATAR_COLORS = [themeColors.primary, themeColors.secondary, themeColors.accent, '#8B4513', '#2E5090', '#7B2D8B', themeColors.accentDark, '#4A6741'];
 
 function getInitials(name) {
   return (name || '?').split(' ').map(s => s[0]).join('').toUpperCase().slice(0, 2);
@@ -545,7 +546,7 @@ export default function MessagesPage() {
                               </div>
                             )}
                             {msg.parent && (
-                              <div className={`mb-1 px-3 py-1.5 rounded-lg bg-surface-light border-s-2 border-s-[#D4AF37] text-xs text-on-surface-variant/60 italic max-w-[300px] truncate ${isRtl ? 'border-s-2' : 'border-s-2'}`}>
+                              <div className={`mb-1 px-3 py-1.5 rounded-lg bg-surface-light border-s-2 border-s-brand-accent text-xs text-on-surface-variant/60 italic max-w-[300px] truncate ${isRtl ? 'border-s-2' : 'border-s-2'}`}>
                                 {msg.parent.body || ''}
                               </div>
                             )}
@@ -996,7 +997,7 @@ function CreateForm({ title, form, setForm, users, loadingUsers, isRtl, t, isTic
                       type="checkbox"
                       checked={selected}
                       onChange={() => toggleParticipant(u.id)}
-                      className="w-4 h-4 rounded accent-[#002819]"
+                      className="w-4 h-4 rounded accent-brand-primary"
                     />
                     <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[9px] font-bold flex-shrink-0"
                       style={{ backgroundColor: getAvatarColor(u.id) }}>

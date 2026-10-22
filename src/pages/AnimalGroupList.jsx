@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import TranslateButton from '../components/TranslateButton';
 import TransferCreateModal from '../components/Transfers/TransferCreateModal';
 
+import { themeColors } from '../config/theme';
 export default function AnimalGroupList() {
   const { t, dir } = useI18n();
   const isRtl = dir === 'rtl';
@@ -18,7 +19,7 @@ export default function AnimalGroupList() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    color: '#D4AF37',
+    color: themeColors.accent,
     animal_ids: [],
     owner_id: '',
   });
@@ -137,7 +138,7 @@ export default function AnimalGroupList() {
 
   const openCreateModal = () => {
     setEditingGroup(null);
-    setFormData({ name: '', description: '', color: '#D4AF37', animal_ids: [], owner_id: '' });
+    setFormData({ name: '', description: '', color: themeColors.accent, animal_ids: [], owner_id: '' });
     setOwnerAnimals([]);
     setShowModal(true);
   };

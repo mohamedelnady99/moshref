@@ -583,7 +583,7 @@ export default function AIAssistant() {
                   placeholder={t('ai.typeMessage', 'Ask your assistant...')}
                   disabled={isLoading}
                   maxLength={2000}
-                  className="w-full px-4 py-3 bg-surface-dim text-on-surface border-none rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#002819]/20 disabled:opacity-50 pr-16"
+                  className="w-full px-4 py-3 bg-surface-dim text-on-surface border-none rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 disabled:opacity-50 pr-16"
                 />
                 <span className="absolute right-3 bottom-3 text-[10px] text-on-surface-subtle pointer-events-none">
                   {input.length}/2000
@@ -592,7 +592,7 @@ export default function AIAssistant() {
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="h-12 w-12 bg-brand-primary text-white rounded-2xl flex items-center justify-center shadow-[0_8px_20px_rgba(0,40,25,0.3)] hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="h-12 w-12 bg-brand-primary text-white rounded-2xl flex items-center justify-center shadow-[0_8px_20px_rgb(var(--color-primary-rgb)/0.3)] hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

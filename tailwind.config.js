@@ -1,3 +1,7 @@
+import { themeColors, themeCssVariables, tailwindBrandColors } from './src/config/theme.js';
+
+// Brand colors live in src/config/theme.js — edit them there.
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,12 +11,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          primary: '#002819',
-          secondary: '#06402B',
-          accent: '#D4AF37',
-          light: '#FAF1F5',
-        },
+        brand: tailwindBrandColors(),
         role: {
           admin: { bg: '#FEE2E2', text: '#DC2626' },
           owner: { bg: '#FEF3C7', text: '#D97706' },
@@ -29,13 +28,13 @@ export default {
           high: '#E3E3DE',
         },
         'on-surface': {
-          DEFAULT: '#002819',
+          DEFAULT: themeColors.primary,
           variant: '#404943',
           subtle: '#717973',
         },
         tertiary: {
-          container: '#735C00',
-          DEFAULT: '#D4AF37',
+          container: themeColors.accentDark,
+          DEFAULT: themeColors.accent,
         },
         outline: {
           DEFAULT: '#c0c9c1',
@@ -48,8 +47,8 @@ export default {
         18: '4.5rem',
       },
       boxShadow: {
-        card: '0px 4px 16px rgba(6, 64, 43, 0.08)',
-        'card-hover': '0px 8px 24px rgba(6, 64, 43, 0.12)',
+        card: '0px 4px 16px rgb(var(--color-secondary-rgb) / 0.08)',
+        'card-hover': '0px 8px 24px rgb(var(--color-secondary-rgb) / 0.12)',
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out',
@@ -67,5 +66,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // Expose the brand palette as CSS variables (--color-primary, --color-primary-rgb, ...)
+    ({ addBase }) => addBase({ ':root': themeCssVariables() }),
+  ],
 };

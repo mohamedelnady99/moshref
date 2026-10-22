@@ -6,6 +6,8 @@ import LanguageSwitcher from '../i18n/LanguageSwitcher';
 import { usePlatform } from '../context/PlatformContext';
 import { storageUrl, apiFetch } from '../utils/api';
 
+import { brandLogoTransparent } from '../assets/brand';
+import { brandEmail } from '../config/brand';
 function getPasswordStrength(password) {
   if (!password) return null;
   let score = 0;
@@ -234,7 +236,7 @@ export default function ForgotPassword() {
   const isOtpComplete = otp.every((digit) => digit !== '');
 
   return (
-    <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
       <div className="absolute top-6 right-6 z-20">
         <LanguageSwitcher />
       </div>
@@ -243,22 +245,16 @@ export default function ForgotPassword() {
         <div
           className="w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(135deg,rgba(0,40,25,0.85),rgba(6,64,43,0.7)),url(${loginBackgroundUrl ? storageUrl(loginBackgroundUrl) : 'https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop'})`
+            backgroundImage: `linear-gradient(135deg,rgb(var(--color-primary-rgb)/0.85),rgb(var(--color-secondary-rgb)/0.7)),url(${loginBackgroundUrl ? storageUrl(loginBackgroundUrl) : 'https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop'})`
           }}
         />
       </div>
 
       <div className="flex-1 flex items-center justify-center w-full px-6">
         <div className="relative z-10 w-full max-w-md">
-          <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgba(6,64,43,0.15)]">
+          <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgb(var(--color-secondary-rgb)/0.15)]">
             <div className="flex flex-col items-center mb-8">
-              {logoUrl ? (
-                <img src={storageUrl(logoUrl)} alt={platformName} className="h-18 mb-5 object-contain" />
-              ) : (
-                <div className="w-18 h-18 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mb-5 shadow-xl shadow-brand-primary/30">
-                  <MaterialSymbol icon="lock_reset" size={36} className="text-brand-accent" weight="fill" />
-                </div>
-              )}
+              <img src={logoUrl ? storageUrl(logoUrl) : brandLogoTransparent} alt={platformName} className="h-18 mb-5 object-contain" />
 
               {/* Step indicator */}
               <div className="flex items-center gap-2 mb-4">
@@ -327,7 +323,7 @@ export default function ForgotPassword() {
                       type="email"
                       value={email}
                       onChange={(e) => { setEmail(e.target.value); setError(''); }}
-                      placeholder="example@oasis.com"
+                      placeholder={brandEmail()}
                       required
                       className={`w-full bg-surface-light rounded-xl py-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-secondary/20 transition-all font-medium text-on-surface placeholder:text-outline ${
                         isRtl ? 'pr-14 pl-5 text-right' : 'pl-14 pr-5 text-left'

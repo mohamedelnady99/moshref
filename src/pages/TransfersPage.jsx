@@ -8,7 +8,8 @@ import { useAuth } from '../context/AuthContext';
 import { TransferStatusBadge, TransferCreateModal } from '../components/Transfers';
 import Pagination from '../components/Pagination';
 
-const AVATAR_COLORS = ['#002819', '#06402B', '#D4AF37', '#8B4513', '#2E5090', '#7B2D8B', '#B8860B', '#4A6741'];
+import { themeColors } from '../config/theme';
+const AVATAR_COLORS = [themeColors.primary, themeColors.secondary, themeColors.accent, '#8B4513', '#2E5090', '#7B2D8B', themeColors.accentDark, '#4A6741'];
 const STATUS_OPTIONS = ['all', 'pending', 'accepted', 'completed', 'rejected', 'cancelled', 'expired'];
 
 function getInitials(name) {
@@ -302,14 +303,14 @@ export default function TransfersPage() {
                       <td className="p-4">
                         {transfer.transfer_type === 'auction' ? (
                           <div className="flex flex-col gap-0.5">
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-accent/10 text-[#B8860B] text-[10px] font-semibold w-fit">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-accent/10 text-brand-accent-dark text-[10px] font-semibold w-fit">
                               <MaterialSymbol icon="gavel" size={11} />
                               {t('transfers.typeAuction') || 'From Auction'}
                             </span>
                             {transfer.linked_auction && (
                               <button
                                 onClick={(e) => { e.stopPropagation(); navigate(`/auctions/${transfer.linked_auction.id}`); }}
-                                className="text-[10px] text-brand-accent hover:text-[#B8860B] hover:underline text-left truncate max-w-[140px]"
+                                className="text-[10px] text-brand-accent hover:text-brand-accent-dark hover:underline text-left truncate max-w-[140px]"
                               >
                                 {transfer.linked_auction.title}
                               </button>

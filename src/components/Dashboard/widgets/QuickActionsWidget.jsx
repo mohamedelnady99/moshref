@@ -18,10 +18,10 @@ export default function QuickActionsWidget({ dashboardData }) {
   const items = [
     { to: '/animals', icon: 'pets', title: t('dashboard.manageAnimals'), subtitle: `${stats?.totalAnimals || 0} total`, color: 'from-brand-primary to-brand-secondary', roles: true },
     { to: '/devices', icon: 'sensors', title: t('nav.devices'), subtitle: `${stats?.activeDevices || 0} active`, color: 'from-brand-secondary to-brand-primary', roles: isAdmin || isOwner || isManager },
-    { to: '/map', icon: 'map', title: t('nav.mapView'), subtitle: t('dashboard.fullTracker'), color: 'from-[#735C00] to-[#D4AF37]', roles: isAdmin || isOwner || isManager },
-    { to: '/users', icon: 'groups', title: t('nav.team'), subtitle: t('team.teamMembers'), color: 'from-brand-accent to-[#735C00]', roles: canManageUsers },
-    { to: '/tasks', icon: 'task', title: t('nav.tasks'), subtitle: t('tasks.title'), color: 'from-brand-secondary to-[#735C00]', roles: true },
-    { to: '/medical-records', icon: 'medical_services', title: t('nav.medicalRecords'), subtitle: t('medicalRecords.records'), color: 'from-[#735C00] to-brand-secondary', roles: isAdmin || isOwner || isManager || userRole === 'Doctor' },
+    { to: '/map', icon: 'map', title: t('nav.mapView'), subtitle: t('dashboard.fullTracker'), color: 'from-brand-accent-dark to-brand-accent', roles: isAdmin || isOwner || isManager },
+    { to: '/users', icon: 'groups', title: t('nav.team'), subtitle: t('team.teamMembers'), color: 'from-brand-accent to-brand-accent-dark', roles: canManageUsers },
+    { to: '/tasks', icon: 'task', title: t('nav.tasks'), subtitle: t('tasks.title'), color: 'from-brand-secondary to-brand-accent-dark', roles: true },
+    { to: '/medical-records', icon: 'medical_services', title: t('nav.medicalRecords'), subtitle: t('medicalRecords.records'), color: 'from-brand-accent-dark to-brand-secondary', roles: isAdmin || isOwner || isManager || userRole === 'Doctor' },
   ];
 
   const visible = items.filter(item => item.roles);
@@ -32,7 +32,7 @@ export default function QuickActionsWidget({ dashboardData }) {
         <Link
           key={idx}
           to={item.to}
-          className={`card p-5 bg-gradient-to-br ${item.color} text-white group hover:shadow-[0_16px_48px_rgba(6,64,43,0.15)] transition-all duration-300 hover:-translate-y-1`}
+          className={`card p-5 bg-gradient-to-br ${item.color} text-white group hover:shadow-[0_16px_48px_rgb(var(--color-secondary-rgb)/0.15)] transition-all duration-300 hover:-translate-y-1`}
         >
           <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <MaterialSymbol icon={item.icon} size={22} className="text-white" weight="fill" />

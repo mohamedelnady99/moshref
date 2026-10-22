@@ -72,7 +72,7 @@ export default function TranslateButton({ text, className = '' }) {
       </button>
       {show && translation && (
         <div
-          className={`absolute z-50 top-6 bg-white border border-brand-accent/30 rounded-xl px-4 py-3 shadow-[0_8px_24px_rgba(6,64,43,0.12)] text-sm text-brand-primary min-w-[200px] max-w-[320px] ${isRtl ? 'left-0' : 'right-0'}`}
+          className={`absolute z-50 top-6 bg-white border border-brand-accent/30 rounded-xl px-4 py-3 shadow-[0_8px_24px_rgb(var(--color-secondary-rgb)/0.12)] text-sm text-brand-primary min-w-[200px] max-w-[320px] ${isRtl ? 'left-0' : 'right-0'}`}
         >
           <div className={`flex items-start gap-2 ${isRtl ? 'flex-row-reverse' : ''}`}>
             <MaterialSymbol icon="g_translate" size={16} className="text-brand-accent shrink-0 mt-0.5" />

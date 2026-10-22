@@ -5,7 +5,8 @@ import { apiFetch } from '../utils/api';
 import { exportData } from '../utils/export';
 import { useI18n } from '../i18n';
 
-function BarChart({ data, height = 200, color = '#002819', maxValue, labelKey }) {
+import { themeColors } from '../config/theme';
+function BarChart({ data, height = 200, color = themeColors.primary, maxValue, labelKey }) {
   const max = maxValue || Math.max(...data.map(d => d.value), 1);
   const barWidth = Math.max(20, Math.min(60, 600 / data.length - 8));
 
@@ -68,7 +69,7 @@ function DonutChart({ segments, total, size = 160 }) {
   );
 }
 
-function TrendChart({ data, height = 200, valueKey = 'value', color = '#002819' }) {
+function TrendChart({ data, height = 200, valueKey = 'value', color = themeColors.primary }) {
   if (!data || data.length === 0) return <div className="text-center py-12 text-on-surface-subtle text-sm">No data</div>;
 
   const values = data.map(d => d[valueKey] || 0);
@@ -250,23 +251,23 @@ export default function ReportsPage() {
       <div className={`flex flex-wrap items-center gap-3 bg-white p-4 rounded-2xl border border-stone-100 shadow-sm ${isRtl ? 'flex-row-reverse' : ''}`}>
         <div className="flex items-center gap-2">
           <label className="text-xs font-bold text-stone-500 uppercase tracking-wider">{t('reportsPage.from')}</label>
-          <input type="date" value={dateFrom} onChange={e => setDateFrom(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-[#002819]/20" />
+          <input type="date" value={dateFrom} onChange={e => setDateFrom(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20" />
         </div>
         <div className="flex items-center gap-2">
           <label className="text-xs font-bold text-stone-500 uppercase tracking-wider">{t('reportsPage.to')}</label>
-          <input type="date" value={dateTo} onChange={e => setDateTo(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-[#002819]/20" />
+          <input type="date" value={dateTo} onChange={e => setDateTo(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20" />
         </div>
         <div className="w-px h-6 bg-stone-200" />
         <div className="flex items-center gap-2">
           <label className="text-xs font-bold text-stone-500 uppercase tracking-wider">{t('reportsPage.group')}</label>
-          <select value={groupFilter} onChange={e => setGroupFilter(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-[#002819]/20 bg-white">
+          <select value={groupFilter} onChange={e => setGroupFilter(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 bg-white">
             <option value="all">{t('reportsPage.allGroups')}</option>
             {groups.map(g => <option key={g.id} value={g.id}>{g.name}</option>)}
           </select>
         </div>
         <div className="flex items-center gap-2">
           <label className="text-xs font-bold text-stone-500 uppercase tracking-wider">{t('reportsPage.animalLabel')}</label>
-          <select value={animalIdFilter} onChange={e => setAnimalIdFilter(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-[#002819]/20 bg-white">
+          <select value={animalIdFilter} onChange={e => setAnimalIdFilter(e.target.value)} className="text-sm border border-stone-200 rounded-lg px-3 py-1.5 text-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 bg-white">
             <option value="all">{t('reportsPage.allAnimals')}</option>
             {animals.map(a => <option key={a.id} value={a.id}>{a.name ? `${a.name} (${a.animal_id})` : a.animal_id}</option>)}
           </select>
@@ -343,7 +344,7 @@ export default function ReportsPage() {
               <TrendChart
                 data={activityTrend.map(d => ({ ...d, value: d.distance }))}
                 valueKey="value"
-                color="#002819"
+                color={themeColors.primary}
               />
             </div>
           </section>
@@ -381,16 +382,16 @@ export default function ReportsPage() {
                 <div className="flex items-center gap-8 md:gap-12">
                   <DonutChart
                     segments={[
-                      { value: activityDistribution.grazing, color: '#002819' },
-                      { value: activityDistribution.moving, color: '#D4AF37' },
+                      { value: activityDistribution.grazing, color: themeColors.primary },
+                      { value: activityDistribution.moving, color: themeColors.accent },
                       { value: activityDistribution.resting, color: '#b6ccbe' },
                     ]}
                     total={activityDistribution.total_points}
                   />
                   <div className="space-y-4 flex-1">
                     {[
-                      { label: t('reportsPage.grazing'), value: activityDistribution.grazing, color: '#002819' },
-                      { label: t('reportsPage.moving'), value: activityDistribution.moving, color: '#D4AF37' },
+                      { label: t('reportsPage.grazing'), value: activityDistribution.grazing, color: themeColors.primary },
+                      { label: t('reportsPage.moving'), value: activityDistribution.moving, color: themeColors.accent },
                       { label: t('reportsPage.resting'), value: activityDistribution.resting, color: '#b6ccbe' },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center justify-between">
@@ -570,7 +571,7 @@ export default function ReportsPage() {
               <div className="relative">
                 <svg className="w-40 h-40 -rotate-90" viewBox="0 0 36 36">
                   <circle cx="18" cy="18" r="16" fill="transparent" stroke="#eeeee9" strokeWidth="3.5" />
-                  <circle cx="18" cy="18" r="16" fill="transparent" stroke="#002819"
+                  <circle cx="18" cy="18" r="16" fill="transparent" stroke={themeColors.primary}
                     strokeDasharray={`${healthMetrics?.coverage_percentage || 0} ${100 - (healthMetrics?.coverage_percentage || 0)}`}
                     strokeWidth="3.5" strokeLinecap="round" className="transition-all duration-700" />
                 </svg>
@@ -598,8 +599,8 @@ export default function ReportsPage() {
             <div className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-stone-100">
               <h3 className="text-xl font-bold text-brand-primary font-['Manrope'] mb-6">{t('reportsPage.breedDistribution')}</h3>
               <BarChart
-                data={breedDistribution.map(b => ({ label: b.breed, value: b.count, color: '#D4AF37' }))}
-                color="#D4AF37"
+                data={breedDistribution.map(b => ({ label: b.breed, value: b.count, color: themeColors.accent }))}
+                color={themeColors.accent}
                 height={250}
               />
             </div>

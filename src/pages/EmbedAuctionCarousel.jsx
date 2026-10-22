@@ -6,6 +6,7 @@ import { apiFetch, storageUrl } from '../utils/api';
 import { useI18n } from '../i18n';
 import { appPath } from '../utils/appPath';
 
+import { brand } from '../config/brand';
 export default function EmbedAuctionCarousel() {
   const [searchParams] = useSearchParams();
   const { t, dir, setLocale } = useI18n();
@@ -156,7 +157,7 @@ export default function EmbedAuctionCarousel() {
       <div className="text-center mt-3 text-[9px] text-on-surface-subtle">
         {t('embedCodesSection.poweredBy') || 'Powered by'}{' '}
         <a href={appPath('/')} target="_top" className="text-brand-primary font-semibold hover:underline">
-          Oasis Trace
+          {brand.name}
         </a>
       </div>
     </div>

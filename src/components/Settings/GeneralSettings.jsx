@@ -8,13 +8,14 @@ import { usePlatform } from '../../context/PlatformContext';
 import SettingsCard from './SettingsCard';
 import { InputField, SelectField, SaveButton } from './InputField';
 
+import { brand, brandEmail } from '../../config/brand';
 export default function GeneralSettings({ dir: _dir }) {
   const { t, dir } = useI18n();
   const { refreshPlatformSettings } = usePlatform();
   const isRtl = dir === 'rtl';
 
   const [generalSettings, setGeneralSettings] = useState({
-    platform_name: 'The Oasis',
+    platform_name: brand.name,
     platform_url: 'http://localhost:5173',
     admin_email: '',
     timezone: 'Asia/Dubai',
@@ -164,21 +165,21 @@ export default function GeneralSettings({ dir: _dir }) {
           label={t('settings.platformName')}
           value={generalSettings.platform_name}
           onChange={(e) => setGeneralSettings({ ...generalSettings, platform_name: e.target.value })}
-          placeholder="The Oasis"
+          placeholder={brand.name}
         />
         <InputField
           label={t('settings.platformUrl')}
           type="url"
           value={generalSettings.platform_url}
           onChange={(e) => setGeneralSettings({ ...generalSettings, platform_url: e.target.value })}
-          placeholder="https://oasis.com"
+          placeholder={`https://${brand.domain}`}
         />
         <InputField
           label={t('settings.adminEmail')}
           type="email"
           value={generalSettings.admin_email}
           onChange={(e) => setGeneralSettings({ ...generalSettings, admin_email: e.target.value })}
-          placeholder="admin@oasis.com"
+          placeholder={brandEmail('admin')}
         />
         <SelectField
           label={t('settings.timezone')}

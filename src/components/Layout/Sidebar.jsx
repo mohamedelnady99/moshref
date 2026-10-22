@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useI18n } from '../../i18n';
 import { useAuth } from '../../context/AuthContext';
 
+import { brand } from '../../config/brand';
 export default function Sidebar() {
   const { t, dir } = useI18n();
   const { user } = useAuth();
@@ -32,7 +33,7 @@ export default function Sidebar() {
   const isRtl = dir === 'rtl';
 
   return (
-    <aside className={`hidden md:flex flex-col h-screen w-64 fixed ${isRtl ? 'right-0' : 'left-0'} top-0 bg-brand-light dark:bg-brand-primary py-8 ${isRtl ? 'shadow-[-12px_0_32px_rgba(6,64,43,0.06)]' : 'shadow-[12px_0_32px_rgba(6,64,43,0.06)]'} z-50`}>
+    <aside className={`hidden md:flex flex-col h-screen w-64 fixed ${isRtl ? 'right-0' : 'left-0'} top-0 bg-brand-light dark:bg-brand-primary py-8 ${isRtl ? 'shadow-[-12px_0_32px_rgb(var(--color-secondary-rgb)/0.06)]' : 'shadow-[12px_0_32px_rgb(var(--color-secondary-rgb)/0.06)]'} z-50`}>
       <div className="px-6 mb-8">
         <div className={`flex items-center gap-3 ${isRtl ? 'flex-row-reverse' : ''}`}>
           <div className="w-10 h-10 bg-brand-secondary rounded-lg flex items-center justify-center">
@@ -40,7 +41,7 @@ export default function Sidebar() {
           </div>
           <div className={isRtl ? 'text-right' : ''}>
             <h2 className="text-lg font-black text-brand-secondary dark:text-brand-accent leading-tight">
-              Oasis Tracking
+              {brand.name}
             </h2>
             <p className="text-[10px] uppercase tracking-widest text-brand-secondary/60 font-bold">
               Digital Majlis Admin

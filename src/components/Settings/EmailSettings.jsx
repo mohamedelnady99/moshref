@@ -4,6 +4,7 @@ import { apiFetch } from '../../utils/api';
 import { useI18n } from '../../i18n';
 import { SettingsCard, InputField, SelectField, CheckboxField } from './index';
 
+import { brand, brandEmail } from '../../config/brand';
 const encryptionOptions = [
   { value: 'tls', label: 'TLS' },
   { value: 'ssl', label: 'SSL' },
@@ -263,14 +264,14 @@ export default function EmailSettings({ dir, message, setMessage, saving, setSav
           type="email"
           value={smtpSettings.from_email}
           onChange={(e) => setSmtpSettings({ ...smtpSettings, from_email: e.target.value })}
-          placeholder="noreply@oasis.com"
+          placeholder={brandEmail('noreply')}
         />
         <div className="lg:col-span-2">
           <InputField
             label={t('settings.fromName')}
             value={smtpSettings.from_name}
             onChange={(e) => setSmtpSettings({ ...smtpSettings, from_name: e.target.value })}
-            placeholder="The Oasis"
+            placeholder={brand.name}
           />
         </div>
       </div>
@@ -311,7 +312,7 @@ export default function EmailSettings({ dir, message, setMessage, saving, setSav
 
       {loadingLogs ? (
         <div className="flex justify-center py-6">
-          <div className="animate-spin w-6 h-6 border-2 border-[#002819] border-t-transparent rounded-full" />
+          <div className="animate-spin w-6 h-6 border-2 border-brand-primary border-t-transparent rounded-full" />
         </div>
       ) : emailLogs.length === 0 ? (
         <p className="text-sm text-on-surface-subtle py-4 text-center">No test emails have been sent yet.</p>

@@ -10,6 +10,7 @@ import { getAuthUser, setAuthToken, setAuthUser, setUserRole } from '../utils/co
 import LanguageSwitcher from '../i18n/LanguageSwitcher';
 import Footer from '../components/Layout/Footer';
 
+import { brandMark } from '../assets/brand';
 function Stepper({ step, steps }) {
   const { dir } = useI18n();
   const isRtl = dir === 'rtl';
@@ -64,7 +65,7 @@ function SelectPlanStep({ tiers, onSelect }) {
           return (
             <div key={tier.id} className={`relative bg-white rounded-2xl p-6 shadow-sm border-2 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 ${
               isFeatured
-                ? 'border-brand-primary ring-2 ring-[#002819]/10 bg-gradient-to-b from-brand-primary/5 to-white md:scale-105 md:-translate-y-1'
+                ? 'border-brand-primary ring-2 ring-brand-primary/10 bg-gradient-to-b from-brand-primary/5 to-white md:scale-105 md:-translate-y-1'
                 : 'border-surface-high'
             }`}>
               {isFeatured && (
@@ -818,13 +819,7 @@ export default function CheckoutPage() {
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <button onClick={() => navigate('/')} className="flex items-center gap-3">
-              {logoUrl ? (
-                <img src={storageUrl(logoUrl)} alt={platformName} className="w-9 h-9 object-contain rounded-lg" />
-              ) : (
-                <div className="w-9 h-9 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center">
-                  <MaterialSymbol icon="eco" size={18} className="text-brand-accent" fill />
-                </div>
-              )}
+              <img src={logoUrl ? storageUrl(logoUrl) : brandMark} alt={platformName} className="w-9 h-9 object-contain rounded-lg" />
               <span className="text-lg font-bold text-brand-primary">{platformName}</span>
             </button>
           </div>

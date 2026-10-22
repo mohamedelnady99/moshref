@@ -626,7 +626,7 @@ export default function SimulatorPage({ embedded }) {
                       max="20"
                       value={speed}
                       onChange={e => handleSpeedChange(device.id, e.target.value)}
-                      className="flex-1 h-1.5 bg-surface-high rounded-full appearance-none cursor-pointer accent-[#002819]"
+                      className="flex-1 h-1.5 bg-surface-high rounded-full appearance-none cursor-pointer accent-brand-primary"
                     />
                     <span className="text-xs font-mono font-bold text-brand-primary w-8 text-right">{speed} km/h</span>
                   </div>

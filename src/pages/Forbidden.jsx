@@ -17,7 +17,7 @@ export default function Forbidden() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE] flex items-center justify-center p-6">
       <div className="max-w-md w-full text-center bg-white rounded-3xl shadow-card p-8 sm:p-10 animate-slide-up">
         <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-danger/10 flex items-center justify-center">
           <MaterialSymbol icon="lock" size={36} className="text-danger" />

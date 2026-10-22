@@ -1,5 +1,12 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import { brandTitle } from './src/config/brand.js';
+
+// Fills %BRAND_TITLE% in index.html from src/config/brand.js
+const brandHtml = () => ({
+  name: 'brand-html',
+  transformIndexHtml: (html) => html.replaceAll('%BRAND_TITLE%', brandTitle),
+});
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -12,7 +19,7 @@ export default defineConfig(({ mode }) => {
     // Deploy at the domain root by default. Set VITE_BASE_PATH=/folder/ only
     // when the whole app is served from a subdirectory.
     base: env.VITE_BASE_PATH || '/',
-    plugins: [react()],
+    plugins: [react(), brandHtml()],
     root: '.',
     build: {
       outDir: 'dist',

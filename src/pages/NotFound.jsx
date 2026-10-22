@@ -6,7 +6,7 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE] flex items-center justify-center p-6">
       <div className="max-w-md w-full text-center bg-white rounded-3xl shadow-card p-8 sm:p-10 animate-slide-up">
         <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-lg shadow-brand-primary/20">
           <MaterialSymbol icon="search_off" size={36} className="text-brand-accent" />

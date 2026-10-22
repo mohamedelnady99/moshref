@@ -7,6 +7,7 @@ import LanguageSwitcher from '../i18n/LanguageSwitcher';
 import { usePlatform } from '../context/PlatformContext';
 import { setAuthToken, setAuthUser, setUserRole, setPendingSubscription, getAuthToken } from '../utils/cookies';
 
+import { brandLogoTransparent } from '../assets/brand';
 function getPasswordStrength(password) {
   if (!password) return null;
   let score = 0;
@@ -165,7 +166,7 @@ export default function AcceptInvitation() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE]">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE]">
         <div className="page-spinner" />
       </div>
     );
@@ -173,17 +174,17 @@ export default function AcceptInvitation() {
 
   if (error && !invitation) {
     return (
-      <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
+      <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
         <div className="absolute top-6 right-6 z-20">
           <LanguageSwitcher />
         </div>
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-surface-dim/30" />
-          <div className="w-full h-full bg-[linear-gradient(135deg,rgba(0,40,25,0.85),rgba(6,64,43,0.7)),url(https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop)] bg-cover bg-center" />
+          <div className="w-full h-full bg-[linear-gradient(135deg,rgb(var(--color-primary-rgb)/0.85),rgb(var(--color-secondary-rgb)/0.7)),url(https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop)] bg-cover bg-center" />
         </div>
         <div className="flex-1 flex items-center justify-center w-full px-6">
           <div className="relative z-10 w-full max-w-md">
-            <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgba(6,64,43,0.15)] text-center">
+            <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgb(var(--color-secondary-rgb)/0.15)] text-center">
               <MaterialSymbol icon="link_off" size={48} className="text-danger mx-auto mb-4" />
               <h1 className="text-2xl font-bold text-brand-primary mb-3">{t('invitations.invalidLink')}</h1>
               <p className="text-on-surface-variant mb-6">{error}</p>
@@ -212,17 +213,17 @@ export default function AcceptInvitation() {
 
   if (success) {
     return (
-      <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
+      <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
         <div className="absolute top-6 right-6 z-20">
           <LanguageSwitcher />
         </div>
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-surface-dim/30" />
-          <div className="w-full h-full bg-[linear-gradient(135deg,rgba(0,40,25,0.85),rgba(6,64,43,0.7)),url(https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop)] bg-cover bg-center" />
+          <div className="w-full h-full bg-[linear-gradient(135deg,rgb(var(--color-primary-rgb)/0.85),rgb(var(--color-secondary-rgb)/0.7)),url(https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop)] bg-cover bg-center" />
         </div>
         <div className="flex-1 flex items-center justify-center w-full px-6">
           <div className="relative z-10 w-full max-w-md">
-            <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgba(6,64,43,0.15)] text-center">
+            <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgb(var(--color-secondary-rgb)/0.15)] text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MaterialSymbol icon="check_circle" size={40} className="text-green-600" weight="fill" />
               </div>
@@ -247,26 +248,20 @@ export default function AcceptInvitation() {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-brand-light via-[#F4F4EF] to-[#E3E3DE] ${isRtl ? 'rtl' : 'ltr'}`}>
       <div className="absolute top-6 right-6 z-20">
         <LanguageSwitcher />
       </div>
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-surface-dim/30" />
-        <div className="w-full h-full bg-[linear-gradient(135deg,rgba(0,40,25,0.85),rgba(6,64,43,0.7)),url(https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop)] bg-cover bg-center" />
+        <div className="w-full h-full bg-[linear-gradient(135deg,rgb(var(--color-primary-rgb)/0.85),rgb(var(--color-secondary-rgb)/0.7)),url(https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2070&auto=format&fit=crop)] bg-cover bg-center" />
       </div>
 
       <div className="flex-1 flex items-center justify-center w-full px-6">
         <div className="relative z-10 w-full max-w-md">
-          <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgba(6,64,43,0.15)]">
+          <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgb(var(--color-secondary-rgb)/0.15)]">
             <div className="flex flex-col items-center mb-10">
-              {logoUrl ? (
-                <img src={storageUrl(logoUrl)} alt={platformName} className="h-18 mb-5 object-contain" />
-              ) : (
-                <div className="w-18 h-18 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mb-5 shadow-xl shadow-brand-primary/30">
-                  <MaterialSymbol icon="track_changes" size={36} className="text-brand-accent" weight="fill" />
-                </div>
-              )}
+              <img src={logoUrl ? storageUrl(logoUrl) : brandLogoTransparent} alt={platformName} className="h-18 mb-5 object-contain" />
               <h1 className="text-4xl font-black text-brand-primary font-['Manrope'] tracking-tight mb-2">
                 {t('invitations.completeRegistration')}
               </h1>

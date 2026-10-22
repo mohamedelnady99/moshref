@@ -3,18 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --primary: #002819;
-  --primary-container: #06402B;
-  --primary-container-rgb: 6, 64, 43;
-  --tertiary: #D4AF37;
-  --tertiary-container: #735C00;
-  --surface: #FAF1F5;
+  /* Brand colors (--color-primary, --color-accent, ... and their -rgb channels) are
+     generated from src/config/theme.js by tailwind.config.js. Edit them there. */
   --surface-container-low: #F4F4EF;
   --surface-container-lowest: #FFFFFF;
   --surface-container-high: #E3E3DE;
-  --on-surface: #002819;
   --on-surface-variant: #404943;
-  --outline-variant: rgba(0, 40, 25, 0.15);
+  --outline-variant: rgb(var(--color-primary-rgb) / 0.15);
 }
 
 @layer base {
@@ -29,12 +24,12 @@
   }
 
   ::selection {
-    background: rgba(212, 175, 55, 0.35);
-    color: #002819;
+    background: rgb(var(--color-accent-rgb) / 0.35);
+    color: var(--color-primary);
   }
 
   :focus-visible {
-    outline: 2px solid rgba(212, 175, 55, 0.8);
+    outline: 2px solid rgb(var(--color-accent-rgb) / 0.8);
     outline-offset: 2px;
   }
 
@@ -116,7 +111,7 @@ h1, h2, h3, .font-headline {
   }
 
   .card {
-    @apply bg-white rounded-3xl shadow-[0_12px_32px_rgba(6,64,43,0.06)] overflow-hidden;
+    @apply bg-white rounded-3xl shadow-[0_12px_32px_rgb(var(--color-secondary-rgb)/0.06)] overflow-hidden;
   }
 
   .card-elevated {
@@ -129,11 +124,11 @@ h1, h2, h3, .font-headline {
 
   .input-field:focus {
     @apply outline-none ring-2 ring-brand-secondary/20 bg-white;
-    box-shadow: 0 0 0 4px rgba(6, 64, 43, 0.08);
+    box-shadow: 0 0 0 4px rgb(var(--color-secondary-rgb) / 0.08);
   }
 
   .glass-nav {
-    background: rgba(250, 241, 245, 0.8);
+    background: rgb(var(--color-light-rgb) / 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
@@ -163,7 +158,7 @@ h1, h2, h3, .font-headline {
   }
 
   .stat-card {
-    @apply bg-white rounded-3xl p-6 sm:p-8 shadow-[0_12px_32px_rgba(6,64,43,0.06)];
+    @apply bg-white rounded-3xl p-6 sm:p-8 shadow-[0_12px_32px_rgb(var(--color-secondary-rgb)/0.06)];
   }
 
   .page-spinner {
@@ -178,7 +173,7 @@ select {
   padding: 12px 42px 12px 12px !important;
   font-size: 14px !important;
   font-weight: 500 !important;
-  color: var(--on-surface) !important;
+  color: var(--color-primary) !important;
   border: none !important;
   transition: all 0.2s ease !important;
   cursor: pointer !important;
@@ -192,7 +187,7 @@ select {
 
 select:focus {
   outline: none !important;
-  box-shadow: 0 0 0 3px rgba(var(--primary-container-rgb), 0.15), 0 0 0 4px rgba(var(--primary-container-rgb), 0.08) !important;
+  box-shadow: 0 0 0 3px rgb(var(--color-secondary-rgb) / 0.15), 0 0 0 4px rgb(var(--color-secondary-rgb) / 0.08) !important;
   background-color: var(--surface-container-lowest) !important;
 }
 
@@ -336,14 +331,14 @@ select:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(6, 64, 43, 0.25);
+  background: rgb(var(--color-secondary-rgb) / 0.25);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(6, 64, 43, 0.5);
+  background: rgb(var(--color-secondary-rgb) / 0.5);
   background-clip: padding-box;
 }
 

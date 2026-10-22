@@ -6,6 +6,7 @@ import { apiFetch, storageUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { useI18n } from '../i18n';
 
+import { themeColors } from '../config/theme';
 let stripe = null;
 let elements = null;
 
@@ -72,7 +73,7 @@ export default function MyPayments() {
       style: {
         base: {
           fontSize: '16px',
-          color: '#002819',
+          color: themeColors.primary,
           fontFamily: '"Manrope", sans-serif',
           '::placeholder': {
             color: '#717973',

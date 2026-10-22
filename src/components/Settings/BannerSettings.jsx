@@ -16,7 +16,7 @@ const COLOR_STYLES = {
 
 const COLOR_PREVIEW = {
   dark: { bg: 'bg-stone-900', ring: 'ring-stone-500', text: 'text-white' },
-  brand: { bg: 'bg-brand-primary', ring: 'ring-[#002819]', text: 'text-white' },
+  brand: { bg: 'bg-brand-primary', ring: 'ring-brand-primary', text: 'text-white' },
   amber: { bg: 'bg-amber-400', ring: 'ring-amber-400', text: 'text-brand-primary' },
   emerald: { bg: 'bg-emerald-500', ring: 'ring-emerald-500', text: 'text-white' },
 };

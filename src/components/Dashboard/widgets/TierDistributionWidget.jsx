@@ -22,7 +22,7 @@ export default function TierDistributionWidget({ dashboardData }) {
               <p className="text-sm font-semibold text-on-surface-variant mt-1">{tier.name}</p>
               <div className="mt-3 h-2 bg-surface-light rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-brand-primary to-[#D4AF37] rounded-full transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-brand-primary to-brand-accent rounded-full transition-all duration-500"
                   style={{ width: `${pct}%` }}
                 />
               </div>

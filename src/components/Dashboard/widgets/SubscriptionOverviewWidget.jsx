@@ -31,7 +31,7 @@ export default function SubscriptionOverviewWidget({ dashboardData }) {
         <p className="text-sm text-white/60">{t('subscription.active')}</p>
         <p className="text-3xl font-black text-emerald-400">{(adminSubStats.active_subscribers || 0).toLocaleString()}</p>
       </div>
-      <div className="stat-card bg-gradient-to-br from-[#735C00] to-[#D4AF37] text-white">
+      <div className="stat-card bg-gradient-to-br from-brand-accent-dark to-brand-accent text-white">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
             <MaterialSymbol icon="payments" size={20} className="text-white" />

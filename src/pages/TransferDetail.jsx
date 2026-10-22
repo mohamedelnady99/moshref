@@ -7,7 +7,8 @@ import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 import { TransferStatusBadge } from '../components/Transfers';
 
-const AVATAR_COLORS = ['#002819', '#06402B', '#D4AF37', '#8B4513', '#2E5090', '#7B2D8B', '#B8860B', '#4A6741'];
+import { themeColors } from '../config/theme';
+const AVATAR_COLORS = [themeColors.primary, themeColors.secondary, themeColors.accent, '#8B4513', '#2E5090', '#7B2D8B', themeColors.accentDark, '#4A6741'];
 
 function getInitials(name) {
   return (name || '?').split(' ').map(s => s[0]).join('').toUpperCase().slice(0, 2);
@@ -270,7 +271,7 @@ export default function TransferDetail() {
             {transfer.transfer_type === 'auction' ? (
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-accent/10 text-[#B8860B] text-xs font-semibold">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent-dark text-xs font-semibold">
                     <MaterialSymbol icon="gavel" size={14} />
                     {t('transfers.typeAuction') || 'From Auction'}
                   </span>
@@ -286,7 +287,7 @@ export default function TransferDetail() {
                     </div>
                     <button
                       onClick={() => navigate(`/auctions/${transfer.linked_auction.id}`)}
-                      className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-accent hover:text-[#B8860B]"
+                      className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-accent hover:text-brand-accent-dark"
                     >
                       <MaterialSymbol icon="open_in_new" size={13} />
                       {t('transfers.viewAuction') || 'View Auction'}

@@ -96,8 +96,8 @@ export default function SettingsPage() {
             onClick={() => { setActiveTab(t.id); setMessage(null); }}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
               activeTab === t.id
-                ? 'bg-white text-[#002819] shadow-sm'
-                : 'text-[#404943] hover:text-[#002819]'
+                ? 'bg-white text-brand-primary shadow-sm'
+                : 'text-[#404943] hover:text-brand-primary'
             }`}
           >
             <MaterialSymbol icon={t.icon} size={18} />
@@ -137,7 +137,7 @@ export default function SettingsPage() {
         )}
         {loading && (
           <div className="flex justify-center items-center min-h-[200px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#002819]"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary"></div>
           </div>
         )}
       </div>

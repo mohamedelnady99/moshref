@@ -612,7 +612,7 @@ export default function VaccinationSchedulePage() {
                   <select
                     value={formData.animal_id}
                     onChange={(e) => setFormData({ ...formData, animal_id: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     required
                     disabled={!!editingRecord}
                   >
@@ -631,7 +631,7 @@ export default function VaccinationSchedulePage() {
                     type="text"
                     value={formData.vaccine_name}
                     onChange={(e) => setFormData({ ...formData, vaccine_name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     placeholder={t('vaccination.vaccinePlaceholder')}
                     required
                   />
@@ -642,7 +642,7 @@ export default function VaccinationSchedulePage() {
                     <select
                       value={formData.vaccination_type}
                       onChange={(e) => setFormData({ ...formData, vaccination_type: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                      className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     >
                       {vaccinationTypes.map((vt) => (
                         <option key={vt.slug} value={vt.slug}>{vt.name}</option>
@@ -655,7 +655,7 @@ export default function VaccinationSchedulePage() {
                   <select
                     value={formData.assigned_to}
                     onChange={(e) => setFormData({ ...formData, assigned_to: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   >
                     <option value="">{t('vaccination.selectTeamMember') || 'Select team member (optional)'}</option>
                     {teamMembers.map((member) => (
@@ -711,7 +711,7 @@ export default function VaccinationSchedulePage() {
                     type="text"
                     value={formData.manufacturer}
                     onChange={(e) => setFormData({ ...formData, manufacturer: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -721,7 +721,7 @@ export default function VaccinationSchedulePage() {
                     type="text"
                     value={formData.batch_number}
                     onChange={(e) => setFormData({ ...formData, batch_number: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -732,7 +732,7 @@ export default function VaccinationSchedulePage() {
                     min="1"
                     value={formData.dose_number}
                     onChange={(e) => setFormData({ ...formData, dose_number: parseInt(e.target.value) || 1 })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -743,7 +743,7 @@ export default function VaccinationSchedulePage() {
                     min="1"
                     value={formData.total_doses}
                     onChange={(e) => setFormData({ ...formData, total_doses: parseInt(e.target.value) || 1 })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -753,7 +753,7 @@ export default function VaccinationSchedulePage() {
                     type="date"
                     value={formData.scheduled_date}
                     onChange={(e) => setFormData({ ...formData, scheduled_date: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     required
                   />
                 </div>
@@ -764,7 +764,7 @@ export default function VaccinationSchedulePage() {
                     type="date"
                     value={formData.next_due_date}
                     onChange={(e) => setFormData({ ...formData, next_due_date: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -774,7 +774,7 @@ export default function VaccinationSchedulePage() {
                     type="text"
                     value={formData.veterinarian}
                     onChange={(e) => setFormData({ ...formData, veterinarian: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -784,7 +784,7 @@ export default function VaccinationSchedulePage() {
                     type="text"
                     value={formData.clinic}
                     onChange={(e) => setFormData({ ...formData, clinic: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
 
@@ -793,7 +793,7 @@ export default function VaccinationSchedulePage() {
                   <textarea
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-[#002819] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-surface-high bg-white text-brand-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     rows="3"
                   />
                 </div>

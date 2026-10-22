@@ -153,7 +153,7 @@ export default function ActivateDevicePage() {
               value={deviceId}
               onChange={(e) => setDeviceId(e.target.value)}
               placeholder="Enter the device serial number from your GPS tracker"
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#002819]/20"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
               autoFocus
             />
           </div>

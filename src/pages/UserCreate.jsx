@@ -5,6 +5,7 @@ import { apiFetch } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { useI18n } from '../i18n';
 
+import { brandEmail } from '../config/brand';
 export default function UserCreate() {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -242,7 +243,7 @@ export default function UserCreate() {
               value={form.email}
               onChange={e => set('email', e.target.value)}
               className={`w-full bg-surface-dim border-none rounded-xl p-4 focus:ring-2 focus:ring-brand-secondary/20 focus:bg-white transition outline-none ${errors.email ? 'ring-2 ring-red-500' : ''} ${isRtl ? 'text-right' : ''}`}
-              placeholder="ahmed@oasis.com"
+              placeholder={brandEmail('ahmed')}
               required
             />
             {errors.email && <p className={`text-red-600 text-xs mt-1 ${isRtl ? 'mr-1 ml-0 text-right' : 'ml-1'}`}>{errors.email}</p>}

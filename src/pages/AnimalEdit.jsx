@@ -7,6 +7,7 @@ import { useI18n } from '../i18n';
 import { useRole } from '../hooks/useRole';
 import { useAuth } from '../context/AuthContext';
 
+import { brand } from '../config/brand';
 export default function AnimalEdit() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -414,7 +415,7 @@ export default function AnimalEdit() {
   return (
     <form onSubmit={handleSubmit} className="min-h-screen pb-24">
       {/* Top Bar */}
-      <header className={`w-full sticky top-[69px] sm:top-[77px] z-30 bg-white/85 backdrop-blur-xl flex flex-wrap justify-between items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-brand-primary/5 shadow-[0px_12px_32px_rgba(6,64,43,0.06)] ${isRtl ? 'flex-row-reverse' : ''}`}>
+      <header className={`w-full sticky top-[69px] sm:top-[77px] z-30 bg-white/85 backdrop-blur-xl flex flex-wrap justify-between items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-brand-primary/5 shadow-[0px_12px_32px_rgb(var(--color-secondary-rgb)/0.06)] ${isRtl ? 'flex-row-reverse' : ''}`}>
         <div className={`flex items-center gap-3 sm:gap-6 min-w-0 ${isRtl ? 'flex-row-reverse' : ''}`}>
           <button type="button" onClick={() => navigate('/animals')} className="p-2 text-stone-500 hover:bg-stone-200/50 rounded-full transition-colors">
             <MaterialSymbol icon={isRtl ? "arrow_forward" : "arrow_back"} />
@@ -794,7 +795,7 @@ export default function AnimalEdit() {
                         <MaterialSymbol icon="router" className="text-emerald-900" />
                       </div>
                       <div className={`flex-1 ${isRtl ? 'text-right' : ''}`}>
-                        <p className="text-sm font-black text-emerald-900">{currentDevice.name || 'Oasis Tracker'}</p>
+                        <p className="text-sm font-black text-emerald-900">{currentDevice.name || `${brand.name} Tracker`}</p>
                         <p className="text-[10px] text-emerald-600 font-bold">
                           {currentDevice.status === 'online' ? t('devices.online') : t('devices.offline')} • Battery {currentDevice.battery_level}%
                         </p>
