@@ -9,7 +9,7 @@ import LanguageSwitcher from '../../i18n/LanguageSwitcher';
 import { apiFetch, storageUrl } from '../../utils/api';
 import TranslateButton from '../TranslateButton';
 
-export default function Header() {
+export default function Header({ onMenuClick }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -131,9 +131,17 @@ export default function Header() {
   };
 
   return (
-    <header className={`sticky top-0 z-40 glass-nav border-b border-brand-primary/5 px-8 py-5 flex justify-between items-center ${isRtl ? 'flex-row-reverse' : ''}`}>
-      <div className={`flex items-center flex-1 gap-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
-        <Link to="/dashboard" className="flex items-center gap-2 group flex-shrink-0">
+    <header className="sticky top-0 z-40 glass-nav border-b border-brand-primary/5 px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center gap-2 sm:gap-4">
+      <div className="flex items-center flex-1 min-w-0 gap-2 sm:gap-4">
+        <button
+          type="button"
+          onClick={onMenuClick}
+          aria-label="Open menu"
+          className="md:hidden w-10 h-10 rounded-xl flex items-center justify-center text-brand-primary hover:bg-surface-light transition-colors flex-shrink-0"
+        >
+          <MaterialSymbol icon="menu" size={24} />
+        </button>
+        <Link to="/dashboard" className="hidden sm:flex md:hidden items-center gap-2 flex-shrink-0" aria-label={platformName}>
           {logoUrl ? (
             <img src={storageUrl(logoUrl)} alt={platformName} className="w-9 h-9 object-contain rounded-lg flex-shrink-0" />
           ) : (
@@ -141,13 +149,12 @@ export default function Header() {
               <MaterialSymbol icon="eco" size={18} className="text-brand-accent" fill />
             </div>
           )}
-          <span className="text-sm font-bold text-brand-primary hidden sm:block group-hover:text-brand-secondary transition-colors">{platformName}</span>
         </Link>
-        <div className="relative w-full max-w-lg">
+        <div className="relative w-full max-w-lg min-w-0">
           <MaterialSymbol
             icon="search"
             size={20}
-            className={`absolute top-1/2 -translate-y-1/2 text-on-surface-subtle ${isRtl ? 'right-4' : 'left-4'}`}
+            className="absolute top-1/2 -translate-y-1/2 start-3.5 text-on-surface-subtle pointer-events-none"
           />
           <input
             type="text"
@@ -156,19 +163,26 @@ export default function Header() {
             onFocus={() => searchResults && setShowSearchResults(true)}
             onBlur={() => setTimeout(() => setShowSearchResults(false), 200)}
             placeholder={t('common.search')}
-            className={`w-full py-3.5 bg-surface-light rounded-xl border-none text-sm ${isRtl ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4 text-left'} placeholder:text-on-surface-subtle/60 focus:outline-none focus:ring-2 focus:ring-brand-secondary/20 transition-all`}
+            aria-label={t('common.search')}
+            className="w-full h-11 ps-11 pe-10 bg-white/70 border border-brand-primary/5 rounded-xl text-sm text-start text-brand-primary placeholder:text-on-surface-subtle/70 focus:outline-none focus:bg-white focus:border-brand-secondary/20 focus:ring-4 focus:ring-brand-secondary/10 transition-all"
           />
+          {searching && (
+            <span className="absolute top-1/2 -translate-y-1/2 end-3.5 w-4 h-4 border-2 border-brand-secondary/30 border-t-brand-secondary rounded-full animate-spin pointer-events-none" />
+          )}
           {showSearchResults && (
-            <div className={`absolute mt-2 w-full bg-white rounded-2xl shadow-[0_12px_32px_rgba(6,64,43,0.12)] p-4 z-50 ${isRtl ? 'right-0' : 'left-0'}`}>
+            <div className="absolute start-0 mt-2 w-[calc(100vw-1.5rem)] max-w-lg sm:w-full bg-white rounded-2xl shadow-[0_12px_32px_rgba(6,64,43,0.12)] border border-brand-primary/5 p-3 z-50 animate-fade-in">
               {searching ? (
                 <p className="text-sm text-on-surface-subtle text-center py-4">Searching...</p>
               ) : !hasResults ? (
-                <p className="text-sm text-on-surface-subtle text-center py-4">No results found</p>
+                <div className="flex flex-col items-center gap-2 py-6 text-on-surface-subtle">
+                  <MaterialSymbol icon="search_off" size={28} className="opacity-60" />
+                  <p className="text-sm">No results found</p>
+                </div>
               ) : (
                 <div className="space-y-1 max-h-96 overflow-y-auto">
                   {searchResults.animals?.map(animal => (
                     <button key={`animal-${animal.id}`} onMouseDown={() => handleSearchResultClick('animals', animal.id)}
-                      className={`w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-surface-light transition-colors ${isRtl ? 'flex-row-reverse text-right' : ''}`}>
+                      className="w-full flex items-center gap-3 p-2.5 rounded-xl text-start hover:bg-surface-light transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-brand-secondary/10 flex items-center justify-center">
                         <MaterialSymbol icon="pets" size={16} className="text-brand-secondary" />
                       </div>
@@ -180,7 +194,7 @@ export default function Header() {
                   ))}
                   {searchResults.users?.map(user => (
                     <button key={`user-${user.id}`} onMouseDown={() => handleSearchResultClick('users', user.id)}
-                      className={`w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-surface-light transition-colors ${isRtl ? 'flex-row-reverse text-right' : ''}`}>
+                      className="w-full flex items-center gap-3 p-2.5 rounded-xl text-start hover:bg-surface-light transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-brand-accent/15 flex items-center justify-center">
                         <MaterialSymbol icon="person" size={16} className="text-tertiary-container" />
                       </div>
@@ -192,7 +206,7 @@ export default function Header() {
                   ))}
                   {searchResults.devices?.map(device => (
                     <button key={`device-${device.id}`} onMouseDown={() => handleSearchResultClick('devices', device.id)}
-                      className={`w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-surface-light transition-colors ${isRtl ? 'flex-row-reverse text-right' : ''}`}>
+                      className="w-full flex items-center gap-3 p-2.5 rounded-xl text-start hover:bg-surface-light transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center">
                         <MaterialSymbol icon="sensors" size={16} className="text-brand-primary" />
                       </div>
@@ -204,7 +218,7 @@ export default function Header() {
                   ))}
                   {searchResults.auctions?.map(auction => (
                     <button key={`auction-${auction.id}`} onMouseDown={() => handleSearchResultClick('auctions', auction.id)}
-                      className={`w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-surface-light transition-colors ${isRtl ? 'flex-row-reverse text-right' : ''}`}>
+                      className="w-full flex items-center gap-3 p-2.5 rounded-xl text-start hover:bg-surface-light transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-brand-accent/15 flex items-center justify-center">
                         <MaterialSymbol icon="gavel" size={16} className="text-tertiary-container" />
                       </div>
@@ -226,28 +240,35 @@ export default function Header() {
         </div>
       </div>
 
-      <div className={`flex items-center gap-3 ${isRtl ? 'flex-row-reverse' : ''}`}>
+      <div className="relative flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <button
+          type="button"
           onClick={() => window.dispatchEvent(new CustomEvent('toggle-ai-assistant'))}
-          className="w-11 h-11 rounded-xl flex items-center justify-center text-brand-primary hover:bg-surface-light transition-colors"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-brand-primary hover:bg-surface-light transition-colors"
           title="AI Assistant"
+          aria-label="AI Assistant"
         >
           <MaterialSymbol icon="help" size={22} />
         </button>
 
-        <div className="relative notification-bell">
+        <div className="relative sm:static notification-bell">
           <button
+            type="button"
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative w-11 h-11 rounded-xl flex items-center justify-center text-brand-primary hover:bg-surface-light transition-colors"
+            aria-label={t('common.notifications') || 'Notifications'}
+            aria-expanded={showNotifications}
+            className={`relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-brand-primary transition-colors ${showNotifications ? 'bg-surface-light' : 'hover:bg-surface-light'}`}
           >
-            <MaterialSymbol icon="notifications" size={22} />
+            <MaterialSymbol icon="notifications" size={22} fill={unreadCount > 0} />
             {unreadCount > 0 && (
-              <span className={`absolute top-2 w-2.5 h-2.5 bg-danger rounded-full ${isRtl ? 'left-2' : 'right-2'}`} />
+              <span className="absolute top-1 end-1 min-w-[18px] h-[18px] px-1 bg-danger text-white text-[10px] font-bold leading-[18px] text-center rounded-full ring-2 ring-white">
+                {unreadCount > 99 ? '99+' : unreadCount}
+              </span>
             )}
           </button>
           {showNotifications && (
-            <div className={`notification-dropdown absolute mt-3 w-96 bg-white rounded-2xl shadow-[0_12px_32px_rgba(6,64,43,0.12)] p-5 z-[100] ${isRtl ? 'left-0 origin-top-left' : 'right-0 origin-top-right'}`}>
-              <div className="flex items-center justify-between mb-4">
+            <div className="notification-dropdown fixed sm:absolute inset-x-3 sm:inset-x-auto top-16 sm:top-full sm:end-0 mt-0 sm:mt-3 sm:w-96 bg-white rounded-2xl shadow-[0_12px_32px_rgba(6,64,43,0.12)] border border-brand-primary/5 p-4 sm:p-5 z-[100] animate-fade-in">
+              <div className="flex items-center justify-between gap-3 mb-4">
                 <h4 className="font-bold text-brand-primary text-lg">{t('common.notifications') || 'Notifications'}</h4>
                 <button onClick={async () => { await apiFetch('/api/notifications/read-all', { method: 'POST' }); fetchNotifications(); }} className="text-xs text-on-surface-subtle hover:text-brand-primary">
                   {t('common.markAllRead') || 'Mark all read'}
@@ -292,20 +313,21 @@ export default function Header() {
                      return (
                        <div key={n.id} 
                          onClick={handleNotificationClick}
-                         className={`flex items-start gap-3 p-3 rounded-xl hover:bg-surface-light transition-colors cursor-pointer ${isRtl ? 'flex-row-reverse' : ''} ${n.read_at ? 'opacity-60' : ''}`}>
-                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${colors[n.type] || 'bg-brand-accent/15 text-tertiary-container'}`}>
+                         className={`flex items-start gap-3 p-3 rounded-xl hover:bg-surface-light transition-colors cursor-pointer ${n.read_at ? 'opacity-60' : ''}`}>
+                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${colors[n.type] || 'bg-brand-accent/15 text-tertiary-container'}`}>
                            <MaterialSymbol icon={icons[n.type] || 'notifications'} size={18} />
                          </div>
-                         <div className={`flex-1 min-w-0 ${isRtl ? 'text-right' : ''}`}>
-                            <p className="text-sm font-semibold text-brand-primary">{n.title} <TranslateButton text={n.title} /></p>
+                         <div className="flex-1 min-w-0 text-start">
+                            <p className="text-sm font-semibold text-brand-primary break-words">{n.title} <TranslateButton text={n.title} /></p>
                             <p className="text-xs text-on-surface-subtle mt-0.5 line-clamp-2">{n.body} <TranslateButton text={n.body} /></p>
                            <p className="text-[10px] text-on-surface-subtle mt-1">{new Date(n.created_at).toLocaleDateString()}</p>
                          </div>
                          {!n.read_at && (
                            <button
                              onClick={async (e) => { e.stopPropagation(); await apiFetch(`/api/notifications/${n.id}/read`, { method: 'PATCH' }); fetchNotifications(); }}
-                             className="p-1 hover:bg-gray-100 rounded text-on-surface-subtle"
+                             className="p-1.5 hover:bg-white rounded-lg text-on-surface-subtle hover:text-brand-primary flex-shrink-0"
                              title="Mark read"
+                             aria-label="Mark read"
                            >
                              <MaterialSymbol icon="check" size={14} />
                            </button>
@@ -316,7 +338,7 @@ export default function Header() {
                  )}
               </div>
               {notifications.length > 5 && (
-                <Link to="/alerts" onClick={() => setShowNotifications(false)} className="block text-center text-sm text-brand-accent hover:underline mt-3">
+                <Link to="/alerts" onClick={() => setShowNotifications(false)} className="block text-center text-sm font-semibold text-tertiary-container hover:underline mt-3 pt-3 border-t border-brand-primary/5">
                    {t('common.viewAll') || 'View all'}
                  </Link>
               )}
@@ -324,31 +346,31 @@ export default function Header() {
           )}
         </div>
 
-        <div className="w-px h-8 bg-brand-primary/10 mx-2" />
+        <div className="hidden sm:block">
+          <LanguageSwitcher />
+        </div>
+
+        <div className="hidden sm:block w-px h-8 bg-brand-primary/10 mx-1 lg:mx-2" />
+
+        <Link to="/profile" className="hidden sm:flex items-center gap-3 rounded-xl p-1 lg:pe-3 hover:bg-surface-light transition-colors">
+          <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-white font-bold shadow-md flex-shrink-0">
+            {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+          </div>
+          <div className="hidden lg:block text-start max-w-[10rem]">
+            <p className="text-sm font-bold text-brand-primary truncate">{user?.name || 'User'}</p>
+            <p className="text-xs text-on-surface-subtle truncate">{user?.role || 'Guest'}</p>
+          </div>
+        </Link>
 
         <button
+          type="button"
           onClick={handleLogout}
-          className="w-11 h-11 rounded-xl flex items-center justify-center text-brand-primary hover:bg-surface-light transition-colors"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-brand-primary hover:bg-danger/10 hover:text-danger transition-colors"
           title={t('auth.logout')}
+          aria-label={t('auth.logout')}
         >
           <MaterialSymbol icon="logout" size={22} />
         </button>
-
-        <div className="w-px h-8 bg-brand-primary/10 mx-2" />
-
-        <div className="flex items-center gap-3">
-          <div className={`hidden sm:block ${isRtl ? 'text-right' : 'text-left'}`}>
-            <p className="text-sm font-bold text-brand-primary">{user?.name || 'User'}</p>
-            <p className="text-xs text-on-surface-subtle">{user?.role || 'Guest'}</p>
-          </div>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-white font-bold shadow-md">
-            {user?.name?.charAt(0)?.toUpperCase() || 'U'}
-          </div>
-        </div>
-
-        <div className="ml-2">
-          <LanguageSwitcher />
-        </div>
       </div>
     </header>
   );

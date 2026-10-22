@@ -9,6 +9,7 @@ import { useI18n } from '../../i18n';
 import { usePlatform } from '../../context/PlatformContext';
 import { storageUrl, apiFetch } from '../../utils/api';
 import Footer from './Footer';
+import LanguageSwitcher from '../../i18n/LanguageSwitcher';
 
 const mainNavItems = [
   { path: '/dashboard', icon: 'dashboard', labelKey: 'nav.dashboard', roles: ['Admin', 'Owner', 'Manager', 'Shepherd', 'Doctor'] },
@@ -56,14 +57,19 @@ const tasksSubmenu = [
   { path: '/task-logs-archive', labelKey: 'nav.taskLogs', roles: ['Admin', 'Owner'] },
 ];
 
+const navItemBase = 'group relative flex items-center gap-3 rounded-2xl font-semibold text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/60';
+const navItemActive = 'bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-lg shadow-brand-primary/20';
+const navItemIdle = 'text-on-surface-variant hover:bg-white/70 hover:text-brand-primary';
+
 export default function Layout() {
   const location = useLocation();
-const [animalSubmenuOpen, setAnimalSubmenuOpen] = useState(false);
+  const [animalSubmenuOpen, setAnimalSubmenuOpen] = useState(false);
   const [auctionSubmenuOpen, setAuctionSubmenuOpen] = useState(false);
   const [usersSubmenuOpen, setUsersSubmenuOpen] = useState(false);
   const [tasksSubmenuOpen, setTasksSubmenuOpen] = useState(false);
   const [medicalSubmenuOpen, setMedicalSubmenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
   const { user } = useAuth();
   const { t, dir } = useI18n();
@@ -98,7 +104,31 @@ const [animalSubmenuOpen, setAnimalSubmenuOpen] = useState(false);
   const isUsersActive = location.pathname === '/users' || location.pathname === '/team' || location.pathname === '/invitations' || location.pathname.startsWith('/users/');
   const isTasksActive = location.pathname === '/tasks' || location.pathname.startsWith('/task-logs');
 
-const getSubmenu = (item) => {
+  // UI only: expand the submenu of the section the user is currently in,
+  // and close the mobile drawer after navigating.
+  useEffect(() => {
+    if (isAnimalsActive) setAnimalSubmenuOpen(true);
+    if (isMedicalActive) setMedicalSubmenuOpen(true);
+    if (isAuctionsActive) setAuctionSubmenuOpen(true);
+    if (isUsersActive) setUsersSubmenuOpen(true);
+    if (isTasksActive) setTasksSubmenuOpen(true);
+    setMobileNavOpen(false);
+  }, [location.pathname]);
+
+  // Lock page scroll and allow Escape while the mobile drawer is open.
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') setMobileNavOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [mobileNavOpen]);
+
+  const getSubmenu = (item) => {
     if (item.path === '/animals') return animalSubmenu.filter(subItem => !subItem.roles || subItem.roles.includes(user?.role));
     if (item.path === '/medical-records') return medicalSubmenu.filter(subItem => !subItem.roles || subItem.roles.includes(user?.role));
     if (item.path === '/auctions') return auctionSubmenu.filter(subItem => !subItem.roles || subItem.roles.includes(user?.role));
@@ -141,162 +171,204 @@ const getSubmenu = (item) => {
     return 'chevron_right';
   };
 
-const visibleNavItems = navItems.filter(item => !item.roles || item.roles.includes(user?.role));
+  const visibleNavItems = navItems.filter(item => !item.roles || item.roles.includes(user?.role));
 
   const getNavSubmenu = (item) => {
     if (menuItems && item.children) return item.children.filter(sub => !sub.roles || sub.roles.includes(user?.role));
     return getSubmenu(item);
   };
 
-  return (
-    <div className="min-h-screen bg-brand-light">
-      <aside className={`hidden md:flex flex-col h-screen fixed top-0 bg-gradient-to-b from-[#FAF1F5] to-[#F4F4EF] py-6 px-4 z-50 transition-all duration-300 start-0 ${sidebarCollapsed ? 'w-20' : 'w-72'}`}>
-        <div className={`mb-8 ${sidebarCollapsed ? 'px-1' : ''}`}>
-          <div className={`flex items-center gap-4 ${sidebarCollapsed ? 'justify-center' : ''}`}>
-            {logoUrl ? (
-              <img src={storageUrl(logoUrl)} alt={platformName} className="w-14 h-14 object-contain rounded-2xl flex-shrink-0" />
+  const getSectionActive = (item) => {
+    if (item.path === '/animals') return isAnimalsActive;
+    if (item.path === '/medical-records') return isMedicalActive;
+    if (item.path === '/auctions') return isAuctionsActive;
+    if (item.path === '/users') return isUsersActive;
+    if (item.path === '/tasks') return isTasksActive;
+    return location.pathname === item.path;
+  };
+
+  const renderBrand = (collapsed) => (
+    <div className={`flex items-center gap-3 min-w-0 ${collapsed ? 'justify-center' : ''}`}>
+      {logoUrl ? (
+        <img src={storageUrl(logoUrl)} alt={platformName} className={`${collapsed ? 'w-11 h-11' : 'w-12 h-12'} object-contain rounded-2xl flex-shrink-0 transition-all`} />
+      ) : (
+        <div className={`${collapsed ? 'w-11 h-11' : 'w-12 h-12'} bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center shadow-lg shadow-brand-primary/20 flex-shrink-0 transition-all`}>
+          <MaterialSymbol icon="eco" size={26} className="text-brand-accent" fill />
+        </div>
+      )}
+      {!collapsed && (
+        <div className="min-w-0">
+          <h1 className="text-lg font-extrabold text-brand-primary leading-tight truncate">{platformName}</h1>
+          {copyrightText && (
+            <p className="text-[10px] uppercase tracking-wider text-brand-secondary/60 font-semibold truncate">
+              {copyrightText}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+
+  const renderNav = (collapsed) => (
+    <nav className="flex-1 space-y-1 overflow-y-auto overflow-x-hidden no-scrollbar -mx-1 px-1 py-1">
+      {visibleNavItems.map((item) => {
+        const submenu = getNavSubmenu(item);
+        const hasSubmenu = submenu && submenu.length > 0;
+        const isActive = getSectionActive(item);
+        const menuOpen = isSubmenuOpen(item);
+        const label = t(item.labelKey || item.label_key || item.label);
+        const padding = collapsed ? 'justify-center h-12 w-12 mx-auto' : 'px-4 py-3';
+
+        return (
+          <div key={item.path || item.id}>
+            {hasSubmenu ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => toggleSubmenu(item)}
+                  title={collapsed ? label : undefined}
+                  aria-expanded={menuOpen}
+                  className={`w-full ${navItemBase} ${padding} ${isActive ? navItemActive : navItemIdle}`}
+                >
+                  <MaterialSymbol icon={item.icon} size={22} weight={isActive ? 'fill' : 'regular'} className="flex-shrink-0" />
+                  {!collapsed && (
+                    <>
+                      <span className="flex-1 text-start truncate">{label}</span>
+                      <MaterialSymbol
+                        icon="expand_more"
+                        size={20}
+                        className={`flex-shrink-0 transition-transform duration-200 ${menuOpen ? '[transform:rotate(180deg)]' : ''} ${isActive ? 'text-white/80' : 'text-on-surface-subtle'}`}
+                      />
+                    </>
+                  )}
+                </button>
+
+                {!collapsed && menuOpen && (
+                  <div className="ms-5 mt-1 mb-2 ps-3 border-s-2 border-brand-primary/10 space-y-0.5 animate-fade-in">
+                    {submenu.map((subItem) => (
+                      <NavLink
+                        key={subItem.path || subItem.id}
+                        to={subItem.path}
+                        className={({ isActive }) =>
+                          `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/60 ${
+                            isActive
+                              ? 'bg-brand-accent/15 text-brand-primary font-semibold'
+                              : 'text-on-surface-variant/80 font-medium hover:bg-white/70 hover:text-brand-primary'
+                          }`
+                        }
+                      >
+                        <MaterialSymbol icon={subItem.icon || getSubmenuIcon(subItem)} size={18} className="flex-shrink-0" />
+                        <span className="text-start truncate">{t(subItem.labelKey || subItem.label_key || subItem.label)}</span>
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </>
             ) : (
-              <div className="w-14 h-14 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center shadow-lg shadow-brand-primary/20 flex-shrink-0">
-                <MaterialSymbol icon="eco" size={28} className="text-brand-accent" fill />
-              </div>
-            )}
-            {!sidebarCollapsed && (
-              <div>
-                <h1 className="text-xl font-black text-brand-primary leading-tight">{platformName}</h1>
-                <p className="text-[11px] uppercase tracking-wider text-brand-secondary/60 font-semibold">
-                  {copyrightText}
-                </p>
-              </div>
+              <NavLink
+                to={item.path}
+                title={collapsed ? label : undefined}
+                className={({ isActive }) => `${navItemBase} ${padding} ${isActive ? navItemActive : navItemIdle}`}
+              >
+                {({ isActive }) => (
+                  <>
+                    <MaterialSymbol icon={item.icon} size={22} weight={isActive ? 'fill' : 'regular'} className="flex-shrink-0" />
+                    {!collapsed && <span className="text-start truncate">{label}</span>}
+                  </>
+                )}
+              </NavLink>
             )}
           </div>
+        );
+      })}
+    </nav>
+  );
+
+  const renderProfile = (collapsed) => (
+    <div className="pt-4 mt-4 border-t border-brand-primary/10">
+      <NavLink
+        to="/profile"
+        title={collapsed ? (user?.name || 'User') : undefined}
+        className={`flex items-center gap-3 rounded-2xl bg-white/70 hover:bg-white shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/60 ${collapsed ? 'justify-center p-1.5' : 'p-2.5'}`}
+      >
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-white font-bold shadow-md flex-shrink-0">
+          {user?.name?.charAt(0)?.toUpperCase() || 'U'}
         </div>
+        {!collapsed && (
+          <div className="flex-1 min-w-0 text-start">
+            <p className="text-sm font-bold text-brand-primary truncate">{user?.name || 'User'}</p>
+            <p className="text-xs text-on-surface-subtle truncate">{user?.role || 'Guest'}</p>
+          </div>
+        )}
+        {!collapsed && <MaterialSymbol icon={isRtl ? 'chevron_left' : 'chevron_right'} size={18} className="text-on-surface-subtle flex-shrink-0" />}
+      </NavLink>
+    </div>
+  );
 
-        <button
-          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className={`absolute top-8 w-8 h-8 rounded-xl bg-surface-light flex items-center justify-center text-on-surface-variant hover:bg-surface-high transition-colors ${sidebarCollapsed ? 'end-8' : 'end-4'}`}
-        >
-          <MaterialSymbol 
-            icon={sidebarCollapsed ? (isRtl ? 'chevron_left' : 'chevron_right') : (isRtl ? 'chevron_right' : 'chevron_left')} 
-            size={18} 
-          />
-        </button>
-
-        <nav className="flex-1 space-y-2 overflow-y-auto">
-          {visibleNavItems.map((item) => {
-            const submenu = getNavSubmenu(item);
-            const hasSubmenu = submenu && submenu.length > 0;
-            const isActive = item.path === '/animals' ? isAnimalsActive : item.path === '/medical-records' ? isMedicalActive : item.path === '/auctions' ? isAuctionsActive : item.path === '/users' ? isUsersActive : location.pathname === item.path;
-            const menuOpen = isSubmenuOpen(item);
-            
-            return (
-              <div key={item.path || item.id}>
-                {hasSubmenu ? (
-                  <>
-                    <button
-                      onClick={() => toggleSubmenu(item)}
-                      className={`w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-semibold text-sm transition-all duration-300 ${
-                        sidebarCollapsed ? 'justify-center px-0' : `px-5 ${isRtl ? 'flex-row-reverse' : ''}`} ${
-                        isActive
-                          ? 'bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-lg shadow-brand-primary/20'
-                          : 'text-on-surface-variant hover:bg-surface-light'
-                      }`}
-                    >
-                      <MaterialSymbol
-                        icon={item.icon}
-                        size={22}
-                        weight={isActive ? 'fill' : 'regular'}
-                      />
-                      {!sidebarCollapsed && (
-                        <>
-                          <span className="flex-1 text-start">{t(item.labelKey || item.label_key || item.label)}</span>
-                          <MaterialSymbol
-                            icon={menuOpen ? 'expand_less' : 'expand_more'}
-                            size={20}
-                            className={menuOpen ? 'rotate-180' : ''}
-                          />
-                        </>
-                      )}
-                    </button>
-                    
-                    {!sidebarCollapsed && menuOpen && (
-                      <div className={`${isRtl ? 'mr-6' : 'ml-6'} mt-2 space-y-1`}>
-                        {submenu.map((subItem) => (
-                          <NavLink
-                            key={subItem.path || subItem.id}
-                            to={subItem.path}
-                            className={({ isActive }) =>
-                              `flex items-center gap-3 px-5 py-3 rounded-xl font-medium text-sm transition-all duration-200 ${
-                                isRtl ? 'flex-row-reverse' : ''
-                              } ${
-                                isActive
-                                  ? 'bg-brand-accent/15 text-brand-primary font-semibold'
-                                  : 'text-on-surface-variant/70 hover:bg-surface-light hover:text-on-surface-variant'
-                              }`
-                            }
-                          >
-                            <MaterialSymbol
-                              icon={subItem.icon || getSubmenuIcon(subItem)}
-                              size={18}
-                            />
-                            <span className="text-start">{t(subItem.labelKey || subItem.label_key || subItem.label)}</span>
-                          </NavLink>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `flex items-center gap-4 px-4 py-4 rounded-2xl font-semibold text-sm transition-all duration-300 ${
-                        sidebarCollapsed ? 'justify-center px-0' : `px-5 ${isRtl ? 'flex-row-reverse' : ''}`} ${
-                        isActive
-                          ? 'bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-lg shadow-brand-primary/20'
-                          : 'text-on-surface-variant hover:bg-surface-light'
-                      }`
-                    }
-                  >
-                    <MaterialSymbol
-                      icon={item.icon}
-                      size={22}
-                      weight={location.pathname === item.path ? 'fill' : 'regular'}
-                    />
-                    {!sidebarCollapsed && <span className="text-start">{t(item.labelKey || item.label_key || item.label)}</span>}
-                  </NavLink>
-                )}
-              </div>
-            );
-          })}
-        </nav>
-
-        <div className="mt-auto pt-8">
-          <NavLink
-            to="/profile"
-            className={`flex items-center gap-4 mt-6 p-3 rounded-2xl bg-surface-light hover:bg-surface-high transition-colors ${sidebarCollapsed ? 'justify-center p-2' : ''} ${!sidebarCollapsed && isRtl ? 'flex-row-reverse' : ''}`}
+  return (
+    <div className="min-h-screen bg-brand-light">
+      {/* Desktop sidebar */}
+      <aside
+        className={`hidden md:flex flex-col h-screen fixed top-0 start-0 bg-gradient-to-b from-[#FAF1F5] to-[#F4F4EF] border-e border-brand-primary/5 py-5 z-50 transition-[width] duration-300 ${sidebarCollapsed ? 'w-20 px-3' : 'w-72 px-4'}`}
+      >
+        <div className={`mb-6 flex items-center gap-2 ${sidebarCollapsed ? 'flex-col' : 'justify-between'}`}>
+          {renderBrand(sidebarCollapsed)}
+          <button
+            type="button"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            className={`w-8 h-8 rounded-xl bg-white/70 flex items-center justify-center text-on-surface-variant hover:bg-white hover:text-brand-primary shadow-sm transition-colors flex-shrink-0 ${sidebarCollapsed ? 'mt-3' : ''}`}
           >
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-white font-bold text-lg shadow-md flex-shrink-0">
-              {user?.name?.charAt(0)?.toUpperCase() || 'U'}
-            </div>
-            {!sidebarCollapsed && (
-              <div className="flex-1 text-start">
-                <p className="text-sm font-bold text-brand-primary">{user?.name || 'User'}</p>
-                <p className="text-xs text-on-surface-variant/60">{user?.role || 'Guest'}</p>
-              </div>
-            )}
-          </NavLink>
+            <MaterialSymbol
+              icon={sidebarCollapsed ? (isRtl ? 'chevron_left' : 'chevron_right') : (isRtl ? 'chevron_right' : 'chevron_left')}
+              size={18}
+            />
+          </button>
         </div>
+
+        {renderNav(sidebarCollapsed)}
+        {renderProfile(sidebarCollapsed)}
       </aside>
 
-      <main className={`transition-all duration-300 flex flex-col min-h-screen ${sidebarCollapsed ? 'md:ms-20' : 'md:ms-72'}`}>
-        <Header />
-        <div className="flex-1 p-8 lg:p-10">
+      {/* Mobile drawer */}
+      <div
+        className={`md:hidden fixed inset-0 z-[60] bg-brand-primary/40 backdrop-blur-sm transition-opacity duration-300 ${mobileNavOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setMobileNavOpen(false)}
+        aria-hidden="true"
+      />
+      <aside
+        className={`md:hidden fixed top-0 start-0 z-[70] h-full w-[85vw] max-w-xs flex flex-col bg-gradient-to-b from-[#FAF1F5] to-[#F4F4EF] py-5 px-4 shadow-2xl transition-transform duration-300 ${
+          mobileNavOpen ? '[transform:translateX(0)]' : isRtl ? '[transform:translateX(100%)]' : '[transform:translateX(-100%)]'
+        }`}
+        aria-hidden={!mobileNavOpen}
+      >
+        <div className="mb-6 flex items-center justify-between gap-2">
+          {renderBrand(false)}
+          <button
+            type="button"
+            onClick={() => setMobileNavOpen(false)}
+            aria-label={t('common.close')}
+            className="w-9 h-9 rounded-xl bg-white/70 flex items-center justify-center text-on-surface-variant hover:bg-white hover:text-brand-primary flex-shrink-0"
+          >
+            <MaterialSymbol icon="close" size={20} />
+          </button>
+        </div>
+        {renderNav(false)}
+        <div className="pt-4 mt-4 border-t border-brand-primary/10 sm:hidden">
+          <LanguageSwitcher className="w-full" />
+        </div>
+        {renderProfile(false)}
+      </aside>
+
+      <main className={`transition-[margin] duration-300 flex flex-col min-h-screen min-w-0 ${sidebarCollapsed ? 'md:ms-20' : 'md:ms-72'}`}>
+        <Header onMenuClick={() => setMobileNavOpen(true)} />
+        <div className="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 xl:p-10 pb-16">
           <Outlet />
         </div>
-        <div className="h-24" />
         <Footer />
       </main>
       <AIAssistant />
     </div>
   );
 }
-

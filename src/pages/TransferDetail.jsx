@@ -97,7 +97,7 @@ export default function TransferDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-8rem)] bg-white rounded-3xl shadow-sm border border-surface-high" dir={dir}>
-        <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+        <div className="page-spinner" />
       </div>
     );
   }

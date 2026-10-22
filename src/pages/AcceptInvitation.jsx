@@ -166,7 +166,7 @@ export default function AcceptInvitation() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#FAF1F5] via-[#F4F4EF] to-[#E3E3DE]">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+        <div className="page-spinner" />
       </div>
     );
   }

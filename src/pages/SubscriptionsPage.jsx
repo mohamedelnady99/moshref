@@ -1130,7 +1130,7 @@ export default function SubscriptionsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+        <div className="page-spinner" />
       </div>
     );
   }
@@ -1151,7 +1151,7 @@ export default function SubscriptionsPage() {
       )}
 
       {/* Tab Navigation */}
-      <div className="flex gap-8 border-b border-gray-200">
+      <div className="flex gap-4 sm:gap-8 border-b border-gray-200 overflow-x-auto no-scrollbar [&>*]:shrink-0 [&>*]:whitespace-nowrap">
         <button
           onClick={() => setActiveTab('plans')}
           className={`pb-4 px-2 border-b-2 font-bold text-sm transition-colors ${
@@ -2586,7 +2586,7 @@ export default function SubscriptionsPage() {
         <div className="space-y-6">
           {statsLoading ? (
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+              <div className="page-spinner" />
             </div>
           ) : stats ? (
             <>

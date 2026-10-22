@@ -25,7 +25,7 @@ export default function OwnerOverviewWidget({ dashboardData }) {
       <div className="card overflow-hidden">
         {ownerStatsLoading ? (
           <div className="flex items-center justify-center h-40">
-            <div className="animate-spin w-8 h-8 border-2 border-brand-primary border-t-transparent rounded-full" />
+            <div className="page-spinner" />
           </div>
         ) : (
           <div className="overflow-x-auto">

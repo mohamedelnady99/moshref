@@ -236,7 +236,7 @@ export default function TransfersPage() {
       {/* Loading */}
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+          <div className="page-spinner" />
         </div>
       ) : transfers.length === 0 ? (
         <div className="bg-white rounded-2xl shadow-sm border border-surface-high flex flex-col items-center justify-center py-16">

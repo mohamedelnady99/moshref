@@ -149,18 +149,18 @@ export default function Login() {
         />
       </div>
 
-      <div className="flex-1 flex items-center justify-center w-full px-6">
+      <div className="flex-1 flex items-center justify-center w-full px-4 sm:px-6 pt-20 pb-6 sm:py-10">
         <div className="relative z-10 w-full max-w-md">
-          <div className="bg-white/95 backdrop-blur-xl p-10 md:p-12 rounded-3xl shadow-[0_24px_64px_rgba(6,64,43,0.15)]">
+          <div className="bg-white/95 backdrop-blur-xl p-7 sm:p-10 md:p-12 rounded-3xl animate-slide-up shadow-[0_24px_64px_rgba(6,64,43,0.15)]">
           <div className="flex flex-col items-center mb-10">
             {logoUrl ? (
-              <img src={storageUrl(logoUrl)} alt={platformName} className="h-18 mb-5 object-contain" />
+              <img src={storageUrl(logoUrl)} alt={platformName} className="h-[4.5rem] max-w-[12rem] mb-5 object-contain" />
             ) : (
-              <div className="w-18 h-18 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mb-5 shadow-xl shadow-brand-primary/30">
+              <div className="w-[4.5rem] h-[4.5rem] bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mb-5 shadow-xl shadow-brand-primary/30">
                 <MaterialSymbol icon="track_changes" size={36} className="text-brand-accent" weight="fill" />
               </div>
             )}
-            <h1 className="text-4xl font-black text-brand-primary font-['Manrope'] tracking-tight mb-2">
+            <h1 className="text-3xl sm:text-4xl font-black text-brand-primary font-['Manrope'] tracking-tight mb-2">
               {t('auth.login')}
             </h1>
             <p className="text-on-surface-variant font-medium">{platformName}</p>
@@ -318,9 +318,9 @@ export default function Login() {
       </div>
     </div>
 
-      <footer className={`mt-auto w-full py-8 px-12 z-20 ${isRtl ? 'flex-row-reverse' : ''}`}>
-        <div className={`flex justify-between items-center max-w-screen-2xl mx-auto ${isRtl ? 'flex-row-reverse' : ''}`}>
-            <p className="text-white/80 font-medium text-sm">
+      <footer className="mt-auto w-full py-6 sm:py-8 px-4 sm:px-12 z-20">
+        <div className="flex justify-center sm:justify-start items-center max-w-screen-2xl mx-auto text-center sm:text-start">
+            <p className="text-white/80 font-medium text-xs sm:text-sm">
             © {new Date().getFullYear()} {platformName}. {copyrightText}
           </p>
         </div>
