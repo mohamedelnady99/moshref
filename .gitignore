@@ -39,14 +39,14 @@ node_modules
 Thumbs.db
 
 # IDE
-.vscode
+# .vscode
 .idea
 *.swp
 *.swo
 
 # Env
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# .env
+# .env.local
+# .env.development.local
+# .env.test.local
+# .env.production.local
