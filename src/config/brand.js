@@ -7,7 +7,7 @@
 // at runtime, so update it there too if it was set before.
 
 export const brand = {
-  name: 'Mushrif',                  // English / default name
+  name: 'Moshref',                  // English / default name
   localizedNames: {                 // Name shown per language (falls back to `name`)
     ar: 'مشرف',
     ur: 'مشرف',
