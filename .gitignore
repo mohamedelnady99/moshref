@@ -50,3 +50,6 @@ Thumbs.db
 # .env.development.local
 # .env.test.local
 # .env.production.local
+
+# Claude Code: share CLAUDE.md and .claude/memory/, keep personal settings local
+# .claude/settings.local.json

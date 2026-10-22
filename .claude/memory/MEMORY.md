@@ -1,0 +1,6 @@
+- [Owner preferences](owner-preferences.md) — ask before acting when unclear; tunables go in one config file
+- [Brand identity](brand-identity.md) — Mushrif colors (#0E2B1F/#D2B48C), logos, fallback logic, what was kept
+- [Brand name](brand-name.md) — name lives in src/config/brand.js; backend overrides it; oasis_* keys kept on purpose
+- [i18n rules](i18n-rules.md) — t() returns the key when missing; add keys to all 4 locales
+- [Tailwind theme tokens](tailwind-theme-tokens.md) — theme.js → Tailwind + CSS vars; restart dev server after new keys
+- [Repo gotchas](repo-gotchas.md) — committed dist/, dead files, no ESLint config, .env not ignored
