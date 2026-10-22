@@ -353,12 +353,12 @@ export default function AIAssistant() {
       <div className="group relative">
         <button
           disabled
-          className={`fixed bottom-10 ${isRtl ? 'left-6' : 'right-6'} z-50 w-16 h-16 bg-on-surface-subtle rounded-full shadow-lg flex items-center justify-center cursor-not-allowed`}
+          className={`fixed bottom-10 end-4 sm:end-6 z-50 w-16 h-16 bg-on-surface-subtle rounded-full shadow-lg flex items-center justify-center cursor-not-allowed`}
           title="AI Assistant not configured — contact admin"
         >
           <MaterialSymbol icon="smart_toy" size={28} className="text-white/50" weight="fill" />
         </button>
-        <div className={`fixed bottom-28 ${isRtl ? 'left-6' : 'right-6'} z-50 hidden group-hover:block bg-brand-primary text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap shadow-lg`}>
+        <div className={`fixed bottom-28 end-4 sm:end-6 z-50 hidden group-hover:block bg-brand-primary text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap shadow-lg`}>
           AI Assistant not configured — contact admin
         </div>
       </div>
@@ -369,7 +369,7 @@ export default function AIAssistant() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-10 ${isRtl ? 'left-6' : 'right-6'} z-50 w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full shadow-2xl shadow-brand-primary/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-all group`}
+        className={`fixed bottom-10 end-4 sm:end-6 z-50 w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full shadow-2xl shadow-brand-primary/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-all group`}
       >
         {isOpen ? (
           <MaterialSymbol icon="close" size={28} className="text-white" />
@@ -379,7 +379,7 @@ export default function AIAssistant() {
       </button>
 
       {isOpen && (
-        <div className={`fixed bottom-28 ${isRtl ? 'left-6' : 'right-6'} z-50 w-[420px] max-w-[calc(100vw-3rem)] bg-surface rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[680px]`}>
+        <div className={`fixed bottom-28 end-4 sm:end-6 z-50 w-[420px] max-w-[calc(100vw-3rem)] bg-surface rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[680px]`}>
           <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-brand-accent/20 rounded-xl flex items-center justify-center">

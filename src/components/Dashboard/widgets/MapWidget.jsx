@@ -115,7 +115,7 @@ export default function MapWidget({ dashboardData }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <div className={`flex gap-2 ${isRtl ? 'flex-row-reverse' : ''}`}>
+        <div className="flex flex-wrap gap-2">
           {[
             { mode: 'markers', label: t('dashboard.regionalView'), icon: 'map' },
             { mode: 'paths', label: t('dashboard.paths'), icon: 'route' },
@@ -133,7 +133,7 @@ export default function MapWidget({ dashboardData }) {
               {label}
             </button>
           ))}
-          <div className="w-px bg-surface-high" />
+          <div className="hidden sm:block w-px bg-surface-high" />
           <button
             onClick={() => setShowGeofences(!showGeofences)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
@@ -157,7 +157,7 @@ export default function MapWidget({ dashboardData }) {
           </select>
         </div>
       </div>
-      <div className="h-[450px] relative rounded-3xl overflow-hidden">
+      <div className="h-[320px] sm:h-[450px] relative rounded-3xl overflow-hidden">
         <MapContainer
           center={[24.7136, 46.6753]}
           zoom={12}

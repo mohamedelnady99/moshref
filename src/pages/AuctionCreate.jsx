@@ -126,7 +126,7 @@ export default function AuctionCreate() {
 
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+              <div className="page-spinner" />
             </div>
           ) : animals.length === 0 ? (
             <div className="text-center py-12 bg-surface-light rounded-2xl">

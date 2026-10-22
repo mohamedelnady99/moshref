@@ -212,7 +212,7 @@ if (res.ok) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+        <div className="page-spinner" />
       </div>
     );
   }
@@ -242,7 +242,7 @@ if (res.ok) {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-2 bg-surface-light p-1 rounded-xl w-fit">
+      <div className="flex gap-2 bg-surface-light p-1 rounded-xl w-fit max-w-full overflow-x-auto no-scrollbar [&>*]:shrink-0 [&>*]:whitespace-nowrap">
         {tabs.map(tab => (
           <button
             key={tab.id}

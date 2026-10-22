@@ -376,7 +376,7 @@ export default function AlertsPage() {
       {/* Content */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+          <div className="page-spinner" />
         </div>
       ) : alerts.length === 0 ? (
         <div className="bg-white rounded-3xl py-20 text-center text-on-surface-subtle">

@@ -152,7 +152,7 @@ export default function DashboardGrid({ dashboardData }) {
   return (
     <div className="space-y-7">
       <div className="relative overflow-visible rounded-[2rem] border border-brand-primary/5 bg-gradient-to-br from-white via-white to-surface-light px-6 py-6 shadow-[0_12px_32px_rgba(6,64,43,0.06)] sm:px-8 sm:py-7">
-        <div className="pointer-events-none absolute -end-8 -top-12 h-40 w-40 rounded-full bg-brand-accent/10 blur-2xl" />
+        <div className="pointer-events-none absolute end-0 -top-12 h-40 w-40 rounded-full bg-brand-accent/10 blur-2xl" />
         <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary text-brand-accent shadow-lg shadow-brand-primary/20">

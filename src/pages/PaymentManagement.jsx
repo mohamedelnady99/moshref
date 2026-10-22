@@ -133,7 +133,7 @@ export default function PaymentManagement() {
 
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+          <div className="page-spinner" />
         </div>
       ) : auctions.length === 0 ? (
         <div className="bg-white rounded-xl p-12 text-center">

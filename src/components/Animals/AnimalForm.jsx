@@ -202,13 +202,13 @@ export default function AnimalForm() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4 min-w-0">
           <button onClick={handleCancel} className="p-2 hover:bg-surface-dim rounded-lg transition-colors">
             <MaterialSymbol icon="arrow_back" size={24} className="text-on-surface-variant" />
           </button>
           <div>
-            <h2 className="text-3xl font-extrabold font-['Manrope'] text-brand-primary tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-['Manrope'] text-brand-primary tracking-tight">
               {isEditMode ? 'Edit Animal' : 'Add New Animal'}
             </h2>
             <p className="text-on-surface-variant mt-1">

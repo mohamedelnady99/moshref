@@ -393,7 +393,7 @@ export default function AnimalEdit() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+        <div className="page-spinner" />
       </div>
     );
   }
@@ -414,8 +414,8 @@ export default function AnimalEdit() {
   return (
     <form onSubmit={handleSubmit} className="min-h-screen pb-24">
       {/* Top Bar */}
-      <header className={`w-full sticky top-0 z-40 bg-stone-50/80 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-[0px_12px_32px_rgba(6,64,43,0.06)] ${isRtl ? 'flex-row-reverse' : ''}`}>
-        <div className={`flex items-center gap-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
+      <header className={`w-full sticky top-[69px] sm:top-[77px] z-30 bg-white/85 backdrop-blur-xl flex flex-wrap justify-between items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-brand-primary/5 shadow-[0px_12px_32px_rgba(6,64,43,0.06)] ${isRtl ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex items-center gap-3 sm:gap-6 min-w-0 ${isRtl ? 'flex-row-reverse' : ''}`}>
           <button type="button" onClick={() => navigate('/animals')} className="p-2 text-stone-500 hover:bg-stone-200/50 rounded-full transition-colors">
             <MaterialSymbol icon={isRtl ? "arrow_forward" : "arrow_back"} />
           </button>
@@ -443,7 +443,7 @@ export default function AnimalEdit() {
       </header>
 
       {/* Content */}
-      <div className="p-8">
+      <div className="py-6 lg:py-8">
       {message && (
         <div
           className={`mb-6 p-4 rounded-xl ${
@@ -457,11 +457,11 @@ export default function AnimalEdit() {
       )}
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-6 lg:gap-8">
           {/* Left Column */}
           <div className="col-span-12 lg:col-span-8 space-y-8">
              {/* Animal Information */}
-            <section className="bg-white p-8 rounded-xl shadow-sm">
+            <section className="bg-white p-5 sm:p-8 rounded-2xl shadow-card">
               <div className={`flex items-center gap-3 mb-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
                 <MaterialSymbol icon="info" className="text-tertiary-container" />
                 <h3 className="text-xl font-bold text-emerald-900">{t('animals.animalDetails')}</h3>
@@ -545,7 +545,7 @@ export default function AnimalEdit() {
             </section>
 
             {/* Physical Characteristics */}
-            <section className="bg-white p-8 rounded-xl shadow-sm">
+            <section className="bg-white p-5 sm:p-8 rounded-2xl shadow-card">
               <div className={`flex items-center gap-3 mb-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
                 <MaterialSymbol icon="photo_camera" className="text-tertiary-container" />
                 <h3 className="text-xl font-bold text-emerald-900">{t('animals.physicalCharacteristics')}</h3>
@@ -588,7 +588,7 @@ export default function AnimalEdit() {
             </section>
 
             {/* Health Benchmarks */}
-            <section className="bg-white p-8 rounded-xl shadow-sm">
+            <section className="bg-white p-5 sm:p-8 rounded-2xl shadow-card">
               <div className={`flex justify-between items-center mb-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
                 <div className={`flex items-center gap-3 ${isRtl ? 'flex-row-reverse' : ''}`}>
                   <MaterialSymbol icon="monitor_heart" className="text-tertiary-container" />
@@ -634,7 +634,7 @@ export default function AnimalEdit() {
             </section>
 
             {/* Documents */}
-            <section className="bg-white p-8 rounded-xl shadow-sm">
+            <section className="bg-white p-5 sm:p-8 rounded-2xl shadow-card">
               <div className={`flex items-center gap-3 mb-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
                 <MaterialSymbol icon="description" className="text-tertiary-container" />
                 <h3 className="text-xl font-bold text-emerald-900">Documents</h3>
@@ -685,7 +685,7 @@ export default function AnimalEdit() {
 
             {/* Danger Zone */}
             {!isNewAnimal && (
-              <div className="bg-red-50/50 p-8 rounded-xl border border-red-100/50">
+              <div className="bg-red-50/50 p-5 sm:p-8 rounded-2xl border border-red-100/50">
                 <div className={`flex items-center justify-between ${isRtl ? 'flex-row-reverse' : ''}`}>
                   <div className={isRtl ? 'text-right' : ''}>
                     <h4 className="text-red-800 font-bold">{t('animals.lifecycleManagement')}</h4>
@@ -852,8 +852,8 @@ export default function AnimalEdit() {
       </div>
 
       {/* Sticky Footer */}
-      <div className={`fixed bottom-6 right-8 left-[calc(16rem+2rem)] pointer-events-none md:flex hidden ${isRtl ? 'left-8 right-[calc(16rem+2rem)]' : ''}`}>
-        <div className={`bg-white/80 backdrop-blur-md border border-stone-200/50 p-4 rounded-2xl shadow-2xl flex-1 flex items-center justify-between pointer-events-auto ${isRtl ? 'flex-row-reverse' : ''}`}>
+      <div className="fixed bottom-10 end-28 z-40 w-[min(36rem,calc(100vw-28rem))] pointer-events-none lg:flex hidden">
+        <div className="bg-white/90 backdrop-blur-md border border-brand-primary/10 p-3 ps-4 rounded-2xl shadow-2xl flex-1 flex items-center justify-between gap-4 pointer-events-auto">
           <div className={`flex items-center gap-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
             <div className="w-10 h-10 bg-brand-primary/10 rounded-lg flex items-center justify-center">
               <MaterialSymbol icon="history" className="text-brand-primary" style={{ fontVariationSettings: "'FILL' 1" }} />

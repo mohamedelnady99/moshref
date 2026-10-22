@@ -3,7 +3,7 @@ import { MaterialSymbol } from 'react-material-symbols';
 
 export default function SubTabBar({ tabs, activeTab, onTabChange }) {
   return (
-    <div className="flex gap-2 bg-surface-light p-1 rounded-xl w-fit mb-6">
+    <div className="flex gap-2 bg-surface-light p-1 rounded-xl w-fit max-w-full overflow-x-auto no-scrollbar [&>*]:shrink-0 [&>*]:whitespace-nowrap mb-6">
       {tabs.map(tab => (
         <button
           key={tab.id}

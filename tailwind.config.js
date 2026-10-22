@@ -44,6 +44,9 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      spacing: {
+        18: '4.5rem',
+      },
       boxShadow: {
         card: '0px 4px 16px rgba(6, 64, 43, 0.08)',
         'card-hover': '0px 8px 24px rgba(6, 64, 43, 0.12)',

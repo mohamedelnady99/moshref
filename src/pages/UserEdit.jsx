@@ -176,19 +176,19 @@ const fetchData = async () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+        <div className="page-spinner" />
       </div>
     );
   }
 
   return (
     <form onSubmit={submit} className="min-h-screen pb-24">
-      <header className="bg-brand-light backdrop-blur-md sticky top-0 z-40 w-full px-8 py-5 flex justify-between items-center shadow-[0px_12px_32px_rgba(6,64,43,0.06)]">
+      <header className="bg-white/85 backdrop-blur-md sticky top-[69px] sm:top-[77px] z-30 w-full px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-brand-primary/5 flex flex-wrap justify-between items-center gap-3 shadow-[0px_12px_32px_rgba(6,64,43,0.06)]">
         <div className={`flex items-center gap-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
           <button type="button" onClick={() => navigate('/users')} className="p-3 hover:bg-surface-light rounded-xl transition">
             <MaterialSymbol icon={isRtl ? 'arrow_forward' : 'arrow_back'} className="text-brand-secondary" />
           </button>
-          <h1 className="text-2xl font-bold text-brand-primary">{t('users.editUser')}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-brand-primary">{t('users.editUser')}</h1>
         </div>
         <div className={`flex items-center gap-3 px-5 py-2.5 rounded-full ${form.is_active ? 'bg-[#cfe5d6]' : 'bg-[#ffdad6]'}`}>
           <span className={`w-2.5 h-2.5 rounded-full ${form.is_active ? 'bg-brand-primary' : 'bg-danger'}`} />
@@ -198,9 +198,9 @@ const fetchData = async () => {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="max-w-6xl mx-auto py-6 sm:px-4 lg:px-8 sm:py-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         <div className="lg:col-span-8 space-y-8">
-          <section className="card p-8">
+          <section className="card p-5 sm:p-8">
             <div className={`flex items-center gap-3 mb-8 ${isRtl ? 'flex-row-reverse' : ''}`}>
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
                 <MaterialSymbol icon="person" size={22} className="text-brand-accent" />
@@ -321,7 +321,7 @@ const fetchData = async () => {
         </div>
 
         <div className="lg:col-span-4 space-y-8">
-          <section className="card p-8">
+          <section className="card p-5 sm:p-8">
             <div className={`flex items-center gap-3 mb-6 ${isRtl ? 'flex-row-reverse' : ''}`}>
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
                 <MaterialSymbol icon="settings_account_box" size={22} className="text-brand-accent" />

@@ -15,8 +15,8 @@ export default function Pagination({
   const showNav = totalPages > 1;
 
   return (
-    <div className={`flex flex-wrap items-center justify-between gap-4 py-4 px-2 ${isRtl ? 'flex-row-reverse' : ''}`}>
-      <div className={`flex items-center gap-3 ${isRtl ? 'flex-row-reverse' : ''}`}>
+    <div className="flex flex-col sm:flex-row flex-wrap items-center justify-between gap-3 sm:gap-4 py-4 px-2">
+      <div className="flex items-center gap-3">
         <span className="text-sm text-on-surface-subtle">Show</span>
         <select
           value={perPage}
@@ -31,23 +31,23 @@ export default function Pagination({
       </div>
 
       {showNav && (
-        <div className={`flex items-center gap-1 ${isRtl ? 'flex-row-reverse' : ''}`}>
+        <nav className="flex items-center gap-1" aria-label="Pagination">
           <button
             onClick={() => onPageChange(1)}
             disabled={currentPage === 1}
-            className="p-2 rounded-lg hover:bg-surface-light disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-9 h-9 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-light disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
           >
             <MaterialSymbol icon={isRtl ? "last_page" : "first_page"} size={20} />
           </button>
           <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="p-2 rounded-lg hover:bg-surface-light disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-9 h-9 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-light disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
           >
             <MaterialSymbol icon={isRtl ? "chevron_right" : "chevron_left"} size={20} />
           </button>
 
-          <div className="flex items-center gap-1 mx-2">
+          <div className="flex items-center gap-1 mx-1 sm:mx-2">
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
               let page;
               if (totalPages <= 5) {
@@ -63,9 +63,10 @@ export default function Pagination({
                 <button
                   key={page}
                   onClick={() => onPageChange(page)}
-                  className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
+                  aria-current={currentPage === page ? 'page' : undefined}
+                  className={`w-9 h-9 rounded-xl text-sm font-semibold transition-all ${
                     currentPage === page
-                      ? 'bg-brand-primary text-white'
+                      ? 'bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-md shadow-brand-primary/20'
                       : 'hover:bg-surface-light text-on-surface-variant'
                   }`}
                 >
@@ -78,18 +79,18 @@ export default function Pagination({
           <button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-lg hover:bg-surface-light disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-9 h-9 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-light disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
           >
             <MaterialSymbol icon={isRtl ? "chevron_left" : "chevron_right"} size={20} />
           </button>
           <button
             onClick={() => onPageChange(totalPages)}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-lg hover:bg-surface-light disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-9 h-9 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-light disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
           >
             <MaterialSymbol icon={isRtl ? "first_page" : "last_page"} size={20} />
           </button>
-        </div>
+        </nav>
       )}
     </div>
   );

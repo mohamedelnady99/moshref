@@ -157,7 +157,7 @@ export default function TransferCreateModal({ onClose, onCreated, preselectedAni
           {/* Mode toggle */}
           <div>
             <label className="block text-xs font-semibold text-on-surface-variant/70 mb-2">{t('transfers.selectionMode') || 'Selection Mode'}</label>
-            <div className="flex gap-2 bg-surface-light p-1 rounded-xl w-fit">
+            <div className="flex gap-2 bg-surface-light p-1 rounded-xl w-fit max-w-full overflow-x-auto no-scrollbar [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               <button
                 onClick={() => setMode('animals')}
                 className={`px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${mode === 'animals' ? 'bg-white text-brand-primary shadow-sm' : 'text-on-surface-variant hover:text-brand-primary'}`}

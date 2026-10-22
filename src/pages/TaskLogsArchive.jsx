@@ -129,7 +129,7 @@ export default function TaskLogsArchive() {
 
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <div className="animate-spin w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full" />
+          <div className="page-spinner" />
         </div>
       ) : logs.length === 0 ? (
         <div className="card p-12 text-center">
